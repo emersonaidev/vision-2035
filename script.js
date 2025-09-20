@@ -5,28 +5,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const navDots = document.querySelectorAll('.nav-dot');
     const scrollIndicator = document.querySelector('.scroll-indicator');
     let currentPage = 0;
-    let isScrolling = false;
-    let touchStartY = 0;
-    let touchEndY = 0;
 
-    // Initialize IntersectionObserver for page detection
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.5
-    };
-
-    const pageObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const pageIndex = Array.from(pages).indexOf(entry.target);
-                updateActivePage(pageIndex);
-            }
-        });
-    }, observerOptions);
-
-    // Observe all pages
-    pages.forEach(page => pageObserver.observe(page));
+    // Set initial page position
+    window.scrollTo(0, 0);
 
     // Update active navigation dot and hide/show scroll indicator
     function updateActivePage(index) {
@@ -45,45 +26,44 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Hide scroll indicator after first page
         if (scrollIndicator) {
-            if (index === 0) {
-                scrollIndicator.style.display = 'block';
-            } else {
-                scrollIndicator.style.display = 'none';
-            }
+            scrollIndicator.style.display = index === 0 ? 'block' : 'none';
         }
     }
 
     // Navigation dot click handlers
     navDots.forEach((dot, index) => {
         dot.addEventListener('click', () => {
-            scrollToPage(index);
+            navigateToPage(index);
         });
     });
 
-    // Smooth scroll to specific page
-    function scrollToPage(index) {
+    // Navigate to specific page
+    function navigateToPage(index) {
         if (index >= 0 && index < pages.length) {
             pages[index].scrollIntoView({
                 behavior: 'smooth',
                 block: 'start'
             });
+            updateActivePage(index);
         }
     }
 
     // Keyboard navigation
     document.addEventListener('keydown', (e) => {
-        if (isScrolling) return;
-
         switch(e.key) {
             case 'ArrowDown':
             case 'PageDown':
                 e.preventDefault();
-                navigateToPage(currentPage + 1);
+                if (currentPage < pages.length - 1) {
+                    navigateToPage(currentPage + 1);
+                }
                 break;
             case 'ArrowUp':
             case 'PageUp':
                 e.preventDefault();
-                navigateToPage(currentPage - 1);
+                if (currentPage > 0) {
+                    navigateToPage(currentPage - 1);
+                }
                 break;
             case 'Home':
                 e.preventDefault();
@@ -96,45 +76,35 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Mouse wheel navigation with throttling
-    let wheelTimeout;
-    let canScroll = true;
+    // Simple wheel navigation - one event = one page
+    let scrolling = false;
 
     document.addEventListener('wheel', (e) => {
-        if (!canScroll) return;
-
         e.preventDefault();
-        canScroll = false;
 
-        if (e.deltaY > 0) {
+        // Prevent multiple scrolls at once
+        if (scrolling) return;
+
+        scrolling = true;
+
+        if (e.deltaY > 0 && currentPage < pages.length - 1) {
             // Scroll down
             navigateToPage(currentPage + 1);
-        } else if (e.deltaY < 0) {
+        } else if (e.deltaY < 0 && currentPage > 0) {
             // Scroll up
             navigateToPage(currentPage - 1);
         }
 
-        // Throttle wheel events
-        clearTimeout(wheelTimeout);
-        wheelTimeout = setTimeout(() => {
-            canScroll = true;
-        }, 800);
+        // Allow next scroll after a short delay
+        setTimeout(() => {
+            scrolling = false;
+        }, 500);
     }, { passive: false });
 
-    // Navigate to specific page with bounds checking
-    function navigateToPage(index) {
-        if (index >= 0 && index < pages.length && index !== currentPage) {
-            isScrolling = true;
-            scrollToPage(index);
-
-            // Reset scrolling flag after animation
-            setTimeout(() => {
-                isScrolling = false;
-            }, 1000);
-        }
-    }
-
     // Touch support for mobile devices
+    let touchStartY = 0;
+    let touchEndY = 0;
+
     document.addEventListener('touchstart', (e) => {
         touchStartY = e.touches[0].clientY;
     }, { passive: true });
@@ -149,41 +119,35 @@ document.addEventListener('DOMContentLoaded', function() {
         const swipeDistance = touchStartY - touchEndY;
 
         if (Math.abs(swipeDistance) > swipeThreshold) {
-            if (swipeDistance > 0) {
+            if (swipeDistance > 0 && currentPage < pages.length - 1) {
                 // Swiped up - go to next page
                 navigateToPage(currentPage + 1);
-            } else {
+            } else if (swipeDistance < 0 && currentPage > 0) {
                 // Swiped down - go to previous page
                 navigateToPage(currentPage - 1);
             }
         }
     }
 
-    // Hide scroll indicator when user starts interacting
-    document.addEventListener('scroll', () => {
-        if (scrollIndicator && window.pageYOffset > 100) {
-            scrollIndicator.style.opacity = '0';
-        }
-    }, { passive: true });
-
-    // Preload next page images for smooth transitions
-    function preloadNextImage() {
-        if (currentPage < pages.length - 1) {
-            const nextPage = pages[currentPage + 1];
-            const nextImage = nextPage.querySelector('.page-bg img');
-            if (nextImage && nextImage.dataset.src) {
-                const img = new Image();
-                img.src = nextImage.dataset.src;
-            }
-        }
-    }
-
-    // Call preload when page changes
-    const originalUpdateActivePage = updateActivePage;
-    updateActivePage = function(index) {
-        originalUpdateActivePage(index);
-        preloadNextImage();
+    // Track current page with Intersection Observer
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.5
     };
+
+    const pageObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const pageIndex = Array.from(pages).indexOf(entry.target);
+                if (pageIndex !== currentPage) {
+                    updateActivePage(pageIndex);
+                }
+            }
+        });
+    }, observerOptions);
+
+    pages.forEach(page => pageObserver.observe(page));
 
     // Handle resize events for mobile orientation changes
     let resizeTimeout;
@@ -191,7 +155,7 @@ document.addEventListener('DOMContentLoaded', function() {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(() => {
             // Ensure current page is properly in view after resize
-            scrollToPage(currentPage);
+            navigateToPage(currentPage);
         }, 250);
     });
 
@@ -200,26 +164,4 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Add loaded class to body for CSS animations
     document.body.classList.add('loaded');
-
-    // Log navigation for analytics (optional)
-    if (window.console) {
-        console.log('Vision 2035 - Navigation initialized');
-    }
 });
-
-// Add CSS for smooth animations
-const style = document.createElement('style');
-style.textContent = `
-    body.loaded .page {
-        transition: opacity 0.3s ease-in-out;
-    }
-
-    body.loaded .scroll-indicator {
-        transition: opacity 0.3s ease-in-out;
-    }
-
-    html {
-        scroll-behavior: smooth;
-    }
-`;
-document.head.appendChild(style);
