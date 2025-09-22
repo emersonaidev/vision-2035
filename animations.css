@@ -118,6 +118,16 @@
 .page.in-view .corner-image-1 { animation-delay: 0.8s; }
 .page.in-view .corner-image-2 { animation-delay: 1s; }
 
+/* Slide 5 - Dynamic images animation */
+.page.in-view .dynamic-image {
+    opacity: 0;
+    animation: fadeInScale 1s ease-out forwards;
+}
+
+.page.in-view .dynamic-image.image-1 { animation-delay: 0.5s; }
+.page.in-view .dynamic-image.image-2 { animation-delay: 0.7s; }
+.page.in-view .dynamic-image.image-3 { animation-delay: 0.9s; }
+
 /* Two boxes animation */
 .page.in-view .text-box-vertical {
     opacity: 0;
