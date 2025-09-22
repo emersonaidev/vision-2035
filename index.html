@@ -277,6 +277,7 @@
         <div class="page-content centered">
             <div class="content-wrapper centered-content full-width">
                 <div class="final-header">
+                    <h1 class="page-title get-in-touch-title">GET IN TOUCH</h1>
                     <img src="Resourcers/Logo/Logo_White.png" alt="Vision 2035" class="logo-final">
                     <h2 class="date-title-small">FEBRUARY 17 — 21 | 2026</h2>
                 </div>
@@ -287,11 +288,21 @@
                 </blockquote>
 
                 <div class="contact-section">
-                    <a href="mailto:ignition@vision2035.life" class="email-link">ignition@vision2035.life</a>
+                    <a href="mailto:ignition@vision2035.life?subject=Vision%202035%20Inquiry" class="email-link" target="_blank" rel="noopener">
+                        <span class="contact-label">Contact:</span> ignition@vision2035.life
+                    </a>
                 </div>
 
                 <div class="footer-section">
+                    <div class="imprint-links">
+                        <a href="#" onclick="showImprint(); return false;" class="footer-link">Imprint</a>
+                        <span class="separator">|</span>
+                        <a href="#" onclick="showPrivacy(); return false;" class="footer-link">Privacy Policy</a>
+                        <span class="separator">|</span>
+                        <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener" class="footer-link">EU Dispute Resolution</a>
+                    </div>
                     <p class="copyright">© 2025 VISION 2035. ALL RIGHTS RESERVED.</p>
+                    <p class="company-info">Kingstone Entertainment GmbH · Vogelsanger Str. 286 · 50825 Köln</p>
                 </div>
             </div>
         </div>
@@ -310,10 +321,65 @@
         </svg>
     </div>
 
+    <!-- Imprint Modal -->
+    <div id="imprintModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <h2>Site Notice</h2>
+            <p><strong>Information pursuant to Sect. 5 German Telemedia Act (TMG)</strong></p>
+
+            <h3>Company Information</h3>
+            <p>
+                Kingstone Entertainment GmbH<br>
+                Vogelsanger Str. 286<br>
+                50825 Köln<br>
+                Germany
+            </p>
+
+            <p>
+                <strong>Commercial Register:</strong> HRB 87806<br>
+                <strong>Registration court:</strong> Amtsgericht Köln
+            </p>
+
+            <h3>Represented by</h3>
+            <p>Rolf Radny - Managing Director</p>
+
+            <h3>Contact</h3>
+            <p>E-mail: <a href="mailto:kontakt@kingstone.de">kontakt@kingstone.de</a></p>
+
+            <h3>VAT ID</h3>
+            <p>
+                Sales tax identification number according to Sect. 27a of the Sales Tax Law:<br>
+                DE 306604405
+            </p>
+
+            <h3>Person Responsible for Editorial</h3>
+            <p>
+                Kingstone Entertainment GmbH<br>
+                Rolf Radny<br>
+                Vogelsanger Str. 286<br>
+                50825 Köln
+            </p>
+
+            <h3>EU Dispute Resolution</h3>
+            <p>
+                The European Commission provides a platform for online dispute resolution (ODR):<br>
+                <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener">https://ec.europa.eu/consumers/odr/</a><br>
+                Our e-mail address can be found above in the site notice.
+            </p>
+
+            <h3>Dispute Resolution Proceedings</h3>
+            <p>
+                We are not willing or obliged to participate in dispute resolution proceedings in front of a consumer arbitration board.
+            </p>
+        </div>
+    </div>
+
     <script src="webp-support.js"></script>
     <script src="script.min.js"></script>
     <script src="animations.js"></script>
     <script src="contact-button.js"></script>
+    <script src="imprint-modal.js"></script>
     <script>
         // Registrar Service Worker
         if ('serviceWorker' in navigator) {
