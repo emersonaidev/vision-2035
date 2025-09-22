@@ -137,6 +137,32 @@
 .page.in-view .text-box-vertical:nth-child(1) { animation-delay: 0.5s; }
 .page.in-view .text-box-vertical:nth-child(2) { animation-delay: 0.7s; }
 
+/* Last slide (page 10) animations */
+#page10.in-view .logo-final {
+    opacity: 0;
+    animation: scaleIn 1s ease-out 0.3s forwards;
+}
+
+#page10.in-view .date-title-small {
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out 0.5s forwards;
+}
+
+#page10.in-view .quote {
+    opacity: 0;
+    animation: fadeInUp 1s ease-out 0.7s forwards;
+}
+
+#page10.in-view .email-link {
+    opacity: 0;
+    animation: fadeInScale 1s ease-out 1s forwards;
+}
+
+#page10.in-view .copyright {
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out 1.2s forwards;
+}
+
 /* Keyframes */
 @keyframes fadeInUp {
     0% {

@@ -1,0 +1,107 @@
+/* Floating Contact Button */
+.contact-button {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    width: 60px;
+    height: 60px;
+    background: #C9A961;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 999;
+    transition: all 0.3s ease-out;
+    box-shadow: 0 4px 20px rgba(201, 169, 97, 0.3);
+    animation: subtlePulse 5s ease-in-out infinite;
+}
+
+.contact-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 30px rgba(201, 169, 97, 0.5);
+}
+
+.contact-button:active {
+    transform: scale(0.95);
+}
+
+/* SVG Icon */
+.contact-button svg {
+    width: 24px;
+    height: 24px;
+    fill: white;
+}
+
+/* Tooltip */
+.contact-button::before {
+    content: 'Get in touch';
+    position: absolute;
+    right: 70px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease-out;
+}
+
+.contact-button:hover::before {
+    opacity: 1;
+}
+
+/* Hide on loading screen */
+body.loading .contact-button {
+    display: none;
+}
+
+/* Hide on first page for cleaner hero */
+body.on-first-page .contact-button {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(100px);
+}
+
+/* Subtle pulse animation */
+@keyframes subtlePulse {
+    0%, 100% {
+        box-shadow: 0 4px 20px rgba(201, 169, 97, 0.3);
+    }
+    50% {
+        box-shadow: 0 4px 25px rgba(201, 169, 97, 0.4);
+    }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .contact-button {
+        width: 50px;
+        height: 50px;
+        bottom: 30px;
+        right: 20px;
+    }
+
+    .contact-button svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    /* Hide tooltip on mobile */
+    .contact-button::before {
+        display: none;
+    }
+}
+
+/* Avoid overlap with nav dots */
+@media (min-width: 769px) {
+    .nav-dots {
+        bottom: 120px;
+    }
+}

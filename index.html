@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="styles.min.css">
     <link rel="stylesheet" href="loading-simple.css">
     <link rel="stylesheet" href="animations.min.css">
+    <link rel="stylesheet" href="contact-button.css">
     <link rel="preload" href="Resourcers/Images/optimized/necker.island.12.png" as="image">
 </head>
 <body>
@@ -302,9 +303,17 @@
         <div class="scroll-arrow"></div>
     </div>
 
+    <!-- Floating Contact Button -->
+    <div class="contact-button" onclick="scrollToContact()">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+        </svg>
+    </div>
+
     <script src="webp-support.js"></script>
     <script src="script.min.js"></script>
     <script src="animations.js"></script>
+    <script src="contact-button.js"></script>
     <script>
         // Registrar Service Worker
         if ('serviceWorker' in navigator) {
