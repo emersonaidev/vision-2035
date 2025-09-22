@@ -129,7 +129,7 @@ body {
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .content-wrapper.centered-content {
@@ -300,68 +300,252 @@ body {
     border-color: var(--gold);
 }
 
-/* Topics Grid */
-.topics-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+/* What Awaits Section */
+#page5 .page-bg img {
+    object-position: center center;
+    object-fit: cover;
+}
+
+.what-awaits-container {
+    display: flex;
+    width: 100%;
+    max-width: 1400px;
+    height: 100vh;
+    align-items: center;
     gap: 2rem;
-    margin-top: 3rem;
+    padding: 0 3rem;
 }
 
-.topic {
-    background: rgba(0, 0, 0, 0.35);
-    padding: 1.2rem;
-    border-radius: 6px;
-    border: 1px solid rgba(201, 169, 97, 0.15);
-    transition: all 0.3s ease;
+.images-column {
+    flex: 1;
+    position: relative;
+    height: 80vh;
+    padding-left: 3rem;
 }
 
-.topic:hover {
-    background: rgba(0, 0, 0, 0.5);
-    border-color: rgba(201, 169, 97, 0.3);
-    transform: translateY(-2px);
+.dynamic-image {
+    position: absolute;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+    transition: transform 0.3s ease;
 }
 
-.topic h3 {
+.dynamic-image:hover {
+    transform: scale(1.05) rotate(-1deg);
+    z-index: 10;
+}
+
+.dynamic-image.image-1 {
+    width: 240px;
+    height: 180px;
+    top: 5%;
+    left: 5%;
+    transform: rotate(0deg);
+    z-index: 3;
+}
+
+.dynamic-image.image-2 {
+    width: 220px;
+    height: 280px;
+    bottom: 5%;
+    left: 5%;
+    transform: rotate(0deg);
+    z-index: 2;
+}
+
+.dynamic-image.image-3 {
+    width: 200px;
+    height: 260px;
+    top: 30%;
+    left: 35%;
+    transform: rotate(0deg);
+    z-index: 1;
+    object-position: center top;
+}
+
+.text-column {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 2rem;
+}
+
+.text-column .content-wrapper {
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    border-radius: 0;
+    width: 100%;
+    max-width: 380px;
+}
+
+.topics-list {
+    margin-top: 1.5rem;
+}
+
+.topic-item {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.topic-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.topic-item h3 {
     font-family: var(--font-display);
-    font-size: 3rem;
+    font-size: 1rem;
     font-weight: var(--weight-bold);
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.2rem;
     color: var(--white);
+    line-height: 1.1;
 }
 
-.topic p {
+.topic-item p {
     font-family: var(--font-sans);
-    font-size: 1.2rem;
+    font-size: 0.8rem;
     font-weight: var(--weight-light);
-    line-height: 1.5;
+    line-height: 1.2;
     color: var(--white);
+    opacity: 0.85;
+}
+
+/* Why Necker Island Section */
+.necker-island-content {
+    height: 100vh;
+    padding: 2rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.necker-island-content .page-title {
+    margin-bottom: 1rem;
+}
+
+.necker-island-content .body-text {
+    margin-bottom: 0.5rem;
+}
+
+.necker-island-content .highlight-text {
+    display: inline;
+    font-weight: var(--weight-bold);
+}
+
+.corner-images {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    z-index: 2;
+}
+
+.corner-image {
+    position: absolute;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+    transition: transform 0.3s ease;
+}
+
+.corner-image-1 {
+    width: 380px;
+    height: 250px;
+    bottom: 320px;
+    right: 0;
+}
+
+.corner-image-2 {
+    width: 400px;
+    height: 260px;
+    bottom: 30px;
+    right: 80px;
+}
+
+.corner-image:hover {
+    transform: scale(1.05);
+    z-index: 10;
+}
+
+/* Page 7 Background Flip */
+#page7 .page-bg img {
+    transform: scaleX(-1);
 }
 
 /* Experience List */
 .experience-list {
     list-style: none;
-    margin-top: 1.5rem;
-    background: rgba(0, 0, 0, 0.3);
-    padding: 1.5rem;
-    border-radius: 6px;
+    margin-top: 0.5rem;
+    padding: 0;
 }
 
 .experience-list li {
     font-family: var(--font-sans);
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: var(--weight-light);
-    line-height: 1.8;
-    padding-left: 1.5rem;
-    position: relative;
+    line-height: 1.3;
+    color: var(--white);
+    margin-bottom: 0.3rem;
+}
+
+/* Page 9 - Vision 2035 Ignition */
+#page9 .page-bg img {
+    object-position: center top;
+    transform: translateY(-10%);
+}
+
+.ignition-container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 3rem;
+}
+
+.right-boxes {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 40%;
+    max-width: 500px;
+}
+
+.text-box {
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    border-radius: 0;
+    flex: 1;
+}
+
+.box-title {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: var(--weight-bold);
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    color: var(--white);
+    text-transform: uppercase;
+}
+
+.box-text {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: var(--weight-light);
+    line-height: 1.4;
+    margin-bottom: 0.8rem;
     color: var(--white);
 }
 
-.experience-list li::before {
-    content: '•';
-    position: absolute;
-    left: 0;
-    color: var(--gold);
+.box-text.highlight {
+    font-weight: var(--weight-bold);
+    font-size: 1.2rem;
+    margin-top: 1rem;
 }
 
 /* Date Section */
