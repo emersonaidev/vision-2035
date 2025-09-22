@@ -11,8 +11,10 @@
     --white: #FFFFFF;
     --black: #000000;
     --dark-gray: #1a1a1a;
-    --font-serif: 'Bodoni Moda', serif;
-    --font-sans: 'Montserrat', sans-serif;
+    --font-display: 'Oswald', sans-serif;
+    --font-sans: 'Oswald', sans-serif;
+    --weight-light: 300;
+    --weight-bold: 700;
 }
 
 /* Base */
@@ -24,6 +26,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: var(--font-sans);
+    font-weight: var(--weight-light);
     color: var(--white);
     background: var(--black);
     overflow-x: hidden;
@@ -90,6 +93,12 @@ body {
     justify-content: center;
 }
 
+/* Special rule for hero page */
+#page1 .page-content {
+    align-items: flex-start;
+    padding-top: 0;
+}
+
 .page-content.left-aligned {
     justify-content: flex-start;
 }
@@ -109,13 +118,13 @@ body {
 }
 
 .content-wrapper {
-    width: 55%;
-    max-width: 600px;
+    width: 35%;
+    max-width: 450px;
     background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(8px);
     padding: 2.5rem;
-    border-radius: 8px;
-    min-height: auto;
+    border-radius: 0;
+    min-height: 60vh;
     max-height: 85vh;
     overflow-y: auto;
     display: flex;
@@ -126,7 +135,8 @@ body {
 .content-wrapper.centered-content {
     text-align: center;
     background: rgba(0, 0, 0, 0.45);
-    width: 65%;
+    width: 35%;
+    margin-left: 0;
 }
 
 .content-wrapper.full-width {
@@ -136,52 +146,51 @@ body {
 
 /* Typography */
 .page-title {
-    font-family: var(--font-serif);
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
-    font-weight: 900;
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: var(--weight-bold);
     line-height: 1.1;
     letter-spacing: -0.02em;
     margin-bottom: 1.5rem;
     text-transform: uppercase;
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.9);
+    color: var(--white);
 }
 
 .section-title {
-    font-family: var(--font-serif);
-    font-size: clamp(1.3rem, 2.5vw, 2rem);
-    font-weight: 700;
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: var(--weight-bold);
     line-height: 1.2;
     margin-bottom: 1.2rem;
-    text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.8);
+    color: var(--white);
 }
 
 .subtitle {
     font-family: var(--font-sans);
-    font-size: clamp(1rem, 1.8vw, 1.5rem);
-    font-weight: 300;
+    font-size: 1.2rem;
+    font-weight: var(--weight-light);
     line-height: 1.4;
     margin-bottom: 1.5rem;
     letter-spacing: 0.05em;
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+    color: var(--white);
 }
 
 .subtitle.gold {
-    color: var(--gold);
+    color: var(--white);
     font-style: italic;
 }
 
 .body-text {
     font-family: var(--font-sans);
-    font-size: clamp(0.95rem, 1.3vw, 1.1rem);
-    font-weight: 300;
+    font-size: 1.2rem;
+    font-weight: var(--weight-light);
     line-height: 1.7;
     margin-bottom: 1.2rem;
-    color: rgba(255, 255, 255, 0.95);
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+    color: var(--white);
 }
 
 .body-text.large {
-    font-size: clamp(1.1rem, 1.8vw, 1.3rem);
+    font-size: 1.2rem;
 }
 
 .body-text.italic {
@@ -189,44 +198,68 @@ body {
 }
 
 .highlight-text {
-    font-family: var(--font-serif);
-    font-size: clamp(1.4rem, 2.5vw, 2rem);
-    font-weight: 700;
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: var(--weight-light);
     line-height: 1.2;
     margin: 1.5rem 0;
-    color: var(--gold);
-    text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.8);
+    color: var(--white);
 }
 
 .question {
-    font-family: var(--font-serif);
-    font-size: clamp(1.2rem, 2vw, 1.6rem);
-    font-weight: 400;
+    font-family: var(--font-sans);
+    font-size: 1.2rem;
+    font-weight: var(--weight-light);
     font-style: italic;
     margin-top: 2rem;
-    color: var(--gold);
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+    color: var(--white);
 }
 
 .cta-title {
-    font-family: var(--font-serif);
-    font-size: clamp(1.6rem, 3vw, 2.4rem);
-    font-weight: 700;
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: var(--weight-bold);
     margin: 2rem 0 1.5rem;
     text-transform: uppercase;
-    text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.8);
+    color: var(--white);
 }
 
-/* Logo */
-.logo-container {
-    /* Sem fundo na primeira página */
-    padding: 3rem;
+/* Hero Section */
+.hero-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    width: 100%;
+    margin-top: -38vh;
 }
 
-.logo-main {
-    width: clamp(200px, 30vw, 400px);
+.hero-date {
+    font-family: var(--font-sans);
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    font-weight: var(--weight-light);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--black);
+    margin-bottom: 2rem;
+}
+
+.hero-logo {
+    width: clamp(400px, 50vw, 800px);
     height: auto;
+    margin: 2rem 0;
     filter: drop-shadow(2px 2px 10px rgba(0, 0, 0, 0.8));
+}
+
+.hero-tagline {
+    font-family: var(--font-sans);
+    font-size: clamp(1rem, 1.5vw, 1.3rem);
+    font-weight: var(--weight-light);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-top: 2rem;
 }
 
 .logo-footer {
@@ -290,21 +323,19 @@ body {
 }
 
 .topic h3 {
-    font-family: var(--font-serif);
-    font-size: 1.3rem;
-    font-weight: 700;
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: var(--weight-bold);
     margin-bottom: 0.8rem;
-    color: var(--gold);
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+    color: var(--white);
 }
 
 .topic p {
     font-family: var(--font-sans);
-    font-size: 0.95rem;
-    font-weight: 300;
+    font-size: 1.2rem;
+    font-weight: var(--weight-light);
     line-height: 1.5;
-    color: rgba(255, 255, 255, 0.9);
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    color: var(--white);
 }
 
 /* Experience List */
@@ -318,13 +349,12 @@ body {
 
 .experience-list li {
     font-family: var(--font-sans);
-    font-size: clamp(0.9rem, 1.2vw, 1rem);
-    font-weight: 300;
+    font-size: 1.2rem;
+    font-weight: var(--weight-light);
     line-height: 1.8;
     padding-left: 1.5rem;
     position: relative;
-    color: rgba(255, 255, 255, 0.95);
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    color: var(--white);
 }
 
 .experience-list li::before {
@@ -340,11 +370,11 @@ body {
 }
 
 .date-title {
-    font-family: var(--font-serif);
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 300;
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: var(--weight-bold);
     letter-spacing: 0.2em;
-    color: var(--gold);
+    color: var(--white);
 }
 
 /* Quote */
@@ -358,22 +388,21 @@ body {
 }
 
 .quote p {
-    font-family: var(--font-serif);
-    font-size: clamp(1rem, 1.6vw, 1.4rem);
+    font-family: var(--font-sans);
+    font-size: 1.2rem;
     font-style: italic;
     line-height: 1.5;
     margin-bottom: 0.8rem;
-    color: rgba(255, 255, 255, 0.95);
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+    color: var(--white);
 }
 
 .quote cite {
     font-family: var(--font-sans);
-    font-size: 1rem;
-    font-weight: 600;
+    font-size: 1.2rem;
+    font-weight: var(--weight-light);
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--white);
     display: block;
     margin-top: 1.5rem;
 }
@@ -381,16 +410,15 @@ body {
 /* Contact Section */
 .email-link {
     font-family: var(--font-sans);
-    font-size: clamp(1.2rem, 2vw, 1.8rem);
-    color: var(--gold);
+    font-size: 1.2rem;
+    color: var(--white);
     text-decoration: none;
-    border-bottom: 2px solid var(--gold);
+    border-bottom: 2px solid var(--white);
     transition: all 0.3s ease;
 }
 
 .email-link:hover {
-    color: var(--white);
-    border-color: var(--white);
+    opacity: 0.8;
 }
 
 /* Footer Section */
@@ -401,7 +429,7 @@ body {
 .copyright {
     font-family: var(--font-sans);
     font-size: 0.9rem;
-    font-weight: 300;
+    font-weight: var(--weight-light);
     letter-spacing: 0.1em;
     opacity: 0.7;
 }
@@ -439,7 +467,7 @@ body {
 .scroll-indicator span {
     font-family: var(--font-sans);
     font-size: 0.8rem;
-    font-weight: 300;
+    font-weight: var(--weight-light);
     letter-spacing: 0.2em;
     text-transform: uppercase;
     opacity: 0.7;
@@ -470,7 +498,7 @@ body {
 
 /* Gold text variation */
 .gold {
-    color: var(--gold);
+    color: var(--white);
 }
 
 /* Responsive - Tablet */

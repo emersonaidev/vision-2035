@@ -95,10 +95,10 @@ document.addEventListener('DOMContentLoaded', function() {
             navigateToPage(currentPage - 1);
         }
 
-        // Allow next scroll after a short delay
+        // Allow next scroll after a longer delay to prevent jumping
         setTimeout(() => {
             scrolling = false;
-        }, 500);
+        }, 2000);
     }, { passive: false });
 
     // Touch support for mobile devices
@@ -130,6 +130,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Track current page with Intersection Observer
+    // Disabled to prevent conflicts with manual navigation
+    /*
     const observerOptions = {
         root: null,
         rootMargin: '0px',
@@ -148,6 +150,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, observerOptions);
 
     pages.forEach(page => pageObserver.observe(page));
+    */
 
     // Handle resize events for mobile orientation changes
     let resizeTimeout;
