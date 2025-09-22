@@ -1,10 +1,16 @@
 // Simple Loading Screen
-document.addEventListener('DOMContentLoaded', function() {
+function startSimpleLoading() {
     const loadingScreen = document.getElementById('loading-screen');
     const progressFill = document.querySelector('.progress-fill');
     const progressText = document.querySelector('.progress-percentage');
 
+    if (!loadingScreen || !progressFill || !progressText) return;
+
     let progress = 0;
+
+    // Reset progress
+    progressFill.style.width = '0%';
+    progressText.textContent = '0%';
 
     // Simple progress animation
     const interval = setInterval(() => {
@@ -35,4 +41,19 @@ document.addEventListener('DOMContentLoaded', function() {
             loadingScreen.style.display = 'none';
         }, 500);
     }, 3000);
+}
+
+// Export to window for global access
+window.startSimpleLoading = startSimpleLoading;
+
+// Auto-start if authenticated
+document.addEventListener('DOMContentLoaded', function() {
+    const isAuthenticated = sessionStorage.getItem('vision2035_authenticated');
+    const loadingScreen = document.getElementById('loading-screen');
+
+    if (isAuthenticated && loadingScreen) {
+        // User already authenticated, show loading immediately
+        loadingScreen.style.display = 'flex';
+        startSimpleLoading();
+    }
 });

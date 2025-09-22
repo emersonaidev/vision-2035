@@ -90,29 +90,36 @@ function showPasswordPrompt() {
             // Add success animation
             modal.classList.add('password-success');
 
-            // Remove overlay and show content
+            // Immediately transition to loading screen
             setTimeout(() => {
+                // Fade out password overlay
                 overlay.style.opacity = '0';
 
+                // After fade out, show loading screen
                 setTimeout(() => {
                     overlay.remove();
                     document.body.style.overflow = '';
 
-                    // Show main content
+                    // Show main content (but it will be behind loading screen)
                     if (mainContent) {
                         mainContent.style.display = 'block';
                     }
 
-                    // Now show loading screen
+                    // Show and start loading screen immediately
                     if (loadingScreen) {
                         loadingScreen.style.display = 'flex';
-                        // Start the loading animation
-                        if (typeof startLoading === 'function') {
-                            startLoading();
-                        }
+                        // Force reflow to ensure display change takes effect
+                        loadingScreen.offsetHeight;
+
+                        // Start loading animation after a tiny delay to ensure it renders
+                        setTimeout(() => {
+                            if (typeof window.startSimpleLoading === 'function') {
+                                window.startSimpleLoading();
+                            }
+                        }, 50);
                     }
-                }, 500);
-            }, 500);
+                }, 400);
+            }, 300);
         } else {
             // Wrong password
             passwordInput.classList.add('password-shake');
