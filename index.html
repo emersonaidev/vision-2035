@@ -35,6 +35,7 @@
     <link rel="stylesheet" href="animations.min.css">
     <link rel="stylesheet" href="contact-button.css">
     <link rel="stylesheet" href="password-protection.css">
+    <link rel="stylesheet" href="contact-form.css">
     <link rel="preload" href="Resourcers/Logo/Logo_White.png" as="image">
     <link rel="preload" href="Resourcers/Images/optimized/necker.island.12.png" as="image">
 
@@ -71,6 +72,7 @@
         <button class="nav-dot" data-page="7" aria-label="Page 8"></button>
         <button class="nav-dot" data-page="8" aria-label="Page 9"></button>
         <button class="nav-dot" data-page="9" aria-label="Page 10"></button>
+        <button class="nav-dot" data-page="10" aria-label="Page 11"></button>
     </nav>
 
     <!-- Page 1 - Cover -->
@@ -277,16 +279,71 @@
         </div>
     </section>
 
-    <!-- Page 10 - Final/Contact -->
+    <!-- Page 10 - Get In Touch Form -->
     <section class="page" id="page10">
+        <div class="page-bg dark-overlay">
+            <img src="Resourcers/Images/optimized/necker.island.3.png" data-webp="Resourcers/Images/webp/necker.island.3.webp" alt="Necker Island view" loading="lazy">
+        </div>
+        <div class="page-content centered">
+            <div class="content-wrapper centered-content">
+                <h1 class="page-title get-in-touch-title">GET IN TOUCH</h1>
+
+                <p class="form-subtitle">We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+
+                <form id="contact-form" class="contact-form" action="https://formspree.io/f/xpwzekrk" method="POST">
+                    <div class="form-group">
+                        <input
+                            type="text"
+                            id="contact-name"
+                            name="name"
+                            class="form-input"
+                            placeholder="Your Name"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <input
+                            type="email"
+                            id="contact-email"
+                            name="email"
+                            class="form-input"
+                            placeholder="Your Email"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <textarea
+                            id="contact-message"
+                            name="message"
+                            class="form-textarea"
+                            placeholder="Your Message"
+                            rows="5"
+                            required
+                        ></textarea>
+                    </div>
+
+                    <button type="submit" class="form-submit">
+                        <span>SEND MESSAGE</span>
+                    </button>
+
+                    <div id="form-status" class="form-status"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page 11 - Thank You -->
+    <section class="page" id="page11">
         <div class="page-bg dark-overlay">
             <img src="Resourcers/Images/optimized/necker.island.12.png" data-webp="Resourcers/Images/webp/necker.island.12.webp" alt="Necker Island aerial view" loading="lazy">
         </div>
         <div class="page-content centered">
             <div class="content-wrapper centered-content full-width">
                 <div class="final-header">
-                    <h1 class="page-title get-in-touch-title">GET IN TOUCH</h1>
                     <img src="Resourcers/Logo/Logo_White.png" alt="Vision 2035" class="logo-final">
+                    <h1 class="page-title">THANK YOU</h1>
                     <h2 class="date-title-small">FEBRUARY 17 — 21 | 2026</h2>
                 </div>
 
@@ -296,9 +353,9 @@
                 </blockquote>
 
                 <div class="contact-section">
-                    <a href="mailto:ignition@vision2035.life?subject=Vision%202035%20Inquiry" class="email-link" target="_blank" rel="noopener">
+                    <p class="final-email">
                         <span class="contact-label">Contact:</span> ignition@vision2035.life
-                    </a>
+                    </p>
                 </div>
 
                 <div class="footer-section">
@@ -391,6 +448,8 @@
     <script src="animations.js"></script>
     <script src="contact-button.js"></script>
     <script src="imprint-modal.js"></script>
+    <script src="emailjs-config.js"></script>
+    <script src="contact-form.js"></script>
     <script>
         // Registrar Service Worker
         if ('serviceWorker' in navigator) {

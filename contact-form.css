@@ -1,0 +1,146 @@
+/* Contact Form Styles */
+
+.form-subtitle {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 300;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 2.5rem;
+    text-align: center;
+}
+
+.contact-form {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    width: 100%;
+}
+
+.form-input,
+.form-textarea {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    color: #FFFFFF;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 120px;
+    line-height: 1.5;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.05em;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(201, 169, 97, 0.5);
+    box-shadow: 0 0 20px rgba(201, 169, 97, 0.2);
+}
+
+.form-submit {
+    width: 100%;
+    padding: 1.2rem 2rem;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    background: rgba(201, 169, 97, 0.1);
+    border: 2px solid rgba(201, 169, 97, 0.5);
+    border-radius: 6px;
+    color: #C9A961;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    margin-top: 1rem;
+}
+
+.form-submit:hover:not(:disabled) {
+    background: rgba(201, 169, 97, 0.2);
+    border-color: #C9A961;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(201, 169, 97, 0.3);
+}
+
+.form-submit:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.form-submit:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.form-status {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 6px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    text-align: center;
+    display: none;
+}
+
+.form-status.success {
+    display: block;
+    background: rgba(76, 175, 80, 0.1);
+    border: 1px solid rgba(76, 175, 80, 0.3);
+    color: #4CAF50;
+}
+
+.form-status.error {
+    display: block;
+    background: rgba(244, 67, 54, 0.1);
+    border: 1px solid rgba(244, 67, 54, 0.3);
+    color: #F44336;
+}
+
+/* Page 11 - Thank You Styles */
+.final-email {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 300;
+    color: #FFFFFF;
+    margin: 2rem 0;
+}
+
+#page11 .page-title {
+    font-size: 4rem;
+    margin: 2rem 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .contact-form {
+        max-width: 100%;
+    }
+
+    .form-input,
+    .form-textarea {
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+
+    #page11 .page-title {
+        font-size: 3rem;
+    }
+}
