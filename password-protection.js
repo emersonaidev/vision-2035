@@ -1,24 +1,36 @@
 // Password Protection for Vision 2035
-document.addEventListener('DOMContentLoaded', function() {
-    // Check if user already entered correct password in this session
+// This runs IMMEDIATELY when the page loads, BEFORE anything else
+
+// Check authentication immediately
+(function() {
     const isAuthenticated = sessionStorage.getItem('vision2035_authenticated');
 
     if (!isAuthenticated) {
-        // Wait for loading screen to finish before showing password prompt
-        const checkLoadingComplete = setInterval(() => {
-            const loadingScreen = document.getElementById('loading-screen');
-            const loadingVisible = loadingScreen && loadingScreen.style.display !== 'none';
+        // Hide everything immediately
+        document.documentElement.style.visibility = 'hidden';
 
-            if (!loadingVisible) {
-                clearInterval(checkLoadingComplete);
-                // Small delay after loading completes
-                setTimeout(showPasswordPrompt, 500);
-            }
-        }, 100);
+        // Wait for DOM to be ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', showPasswordPrompt);
+        } else {
+            showPasswordPrompt();
+        }
     }
-});
+})();
 
 function showPasswordPrompt() {
+    // Make sure everything stays hidden
+    const loadingScreen = document.getElementById('loading-screen');
+    if (loadingScreen) {
+        loadingScreen.style.display = 'none';
+    }
+
+    // Hide main content
+    const mainContent = document.getElementById('main-content');
+    if (mainContent) {
+        mainContent.style.display = 'none';
+    }
+
     // Create overlay
     const overlay = document.createElement('div');
     overlay.id = 'password-overlay';
@@ -52,13 +64,8 @@ function showPasswordPrompt() {
     overlay.appendChild(modal);
     document.body.appendChild(overlay);
 
-    // Add blur to main content
-    const mainContent = document.getElementById('main-content');
-    if (mainContent) {
-        mainContent.classList.add('content-locked');
-    }
-
-    // Disable scrolling
+    // Make document visible now that password prompt is ready
+    document.documentElement.style.visibility = 'visible';
     document.body.style.overflow = 'hidden';
 
     // Focus on password input
@@ -83,16 +90,27 @@ function showPasswordPrompt() {
             // Add success animation
             modal.classList.add('password-success');
 
-            // Remove overlay and unlock content
+            // Remove overlay and show content
             setTimeout(() => {
                 overlay.style.opacity = '0';
-                if (mainContent) {
-                    mainContent.classList.remove('content-locked');
-                }
-                document.body.style.overflow = '';
 
                 setTimeout(() => {
                     overlay.remove();
+                    document.body.style.overflow = '';
+
+                    // Show main content
+                    if (mainContent) {
+                        mainContent.style.display = 'block';
+                    }
+
+                    // Now show loading screen
+                    if (loadingScreen) {
+                        loadingScreen.style.display = 'flex';
+                        // Start the loading animation
+                        if (typeof startLoading === 'function') {
+                            startLoading();
+                        }
+                    }
                 }, 500);
             }, 500);
         } else {
@@ -120,3 +138,17 @@ function showPasswordPrompt() {
         }
     });
 }
+
+// Also handle authenticated users
+document.addEventListener('DOMContentLoaded', function() {
+    const isAuthenticated = sessionStorage.getItem('vision2035_authenticated');
+
+    if (isAuthenticated) {
+        // User is already authenticated, make sure everything is visible
+        document.documentElement.style.visibility = 'visible';
+        const mainContent = document.getElementById('main-content');
+        if (mainContent) {
+            mainContent.style.display = 'block';
+        }
+    }
+});

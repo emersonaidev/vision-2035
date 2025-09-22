@@ -35,7 +35,11 @@
     <link rel="stylesheet" href="animations.min.css">
     <link rel="stylesheet" href="contact-button.css">
     <link rel="stylesheet" href="password-protection.css">
+    <link rel="preload" href="Resourcers/Logo/Logo_White.png" as="image">
     <link rel="preload" href="Resourcers/Images/optimized/necker.island.12.png" as="image">
+
+    <!-- Password Protection Script - MUST RUN FIRST -->
+    <script src="password-protection.js"></script>
 </head>
 <body>
     <!-- Simple Loading Screen -->
@@ -387,7 +391,6 @@
     <script src="animations.js"></script>
     <script src="contact-button.js"></script>
     <script src="imprint-modal.js"></script>
-    <script src="password-protection.js"></script>
     <script>
         // Registrar Service Worker
         if ('serviceWorker' in navigator) {
