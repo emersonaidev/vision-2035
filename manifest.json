@@ -1,0 +1,17 @@
+{
+  "name": "Vision 2035 - Necker Island",
+  "short_name": "Vision 2035",
+  "description": "Join extraordinary leaders at Necker Island for a transformational gathering",
+  "start_url": "/",
+  "display": "fullscreen",
+  "background_color": "#000000",
+  "theme_color": "#C9A961",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/Resourcers/Logo/Logo_White.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

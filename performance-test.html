@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vision 2035 - Performance Test</title>
+    <style>
+        body {
+            font-family: monospace;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #00ff00;
+        }
+        .metric {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #00ff00;
+        }
+        .good { color: #00ff00; }
+        .warning { color: #ffff00; }
+        .bad { color: #ff0000; }
+    </style>
+</head>
+<body>
+    <h1>Vision 2035 - Performance Metrics</h1>
+    <div id="metrics"></div>
+
+    <script>
+        window.addEventListener('load', () => {
+            const metrics = document.getElementById('metrics');
+
+            // Tempo de carregamento
+            const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
+            const domReady = performance.timing.domContentLoadedEventEnd - performance.timing.navigationStart;
+
+            // Tamanho dos recursos
+            const resources = performance.getEntriesByType('resource');
+            let totalSize = 0;
+            let imageSize = 0;
+
+            resources.forEach(resource => {
+                if (resource.transferSize) {
+                    totalSize += resource.transferSize;
+                    if (resource.name.includes('Images')) {
+                        imageSize += resource.transferSize;
+                    }
+                }
+            });
+
+            // Classificar performance
+            function getClass(value, good, warning) {
+                if (value < good) return 'good';
+                if (value < warning) return 'warning';
+                return 'bad';
+            }
+
+            // Exibir métricas
+            metrics.innerHTML = `
+                <div class="metric">
+                    <strong>Page Load Time:</strong>
+                    <span class="${getClass(loadTime, 3000, 8000)}">${(loadTime/1000).toFixed(2)}s</span>
+                </div>
+                <div class="metric">
+                    <strong>DOM Ready:</strong>
+                    <span class="${getClass(domReady, 2000, 5000)}">${(domReady/1000).toFixed(2)}s</span>
+                </div>
+                <div class="metric">
+                    <strong>Total Resources:</strong> ${resources.length}
+                </div>
+                <div class="metric">
+                    <strong>Total Size:</strong>
+                    <span class="${getClass(totalSize, 5000000, 10000000)}">${(totalSize/1024/1024).toFixed(2)} MB</span>
+                </div>
+                <div class="metric">
+                    <strong>Images Size:</strong>
+                    <span class="${getClass(imageSize, 3000000, 8000000)}">${(imageSize/1024/1024).toFixed(2)} MB</span>
+                </div>
+                <div class="metric">
+                    <strong>Service Worker:</strong>
+                    <span class="${navigator.serviceWorker ? 'good' : 'bad'}">
+                        ${navigator.serviceWorker ? 'Supported' : 'Not Supported'}
+                    </span>
+                </div>
+            `;
+        });
+    </script>
+</body>
+</html>
