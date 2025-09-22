@@ -262,6 +262,33 @@ body {
     margin-top: 2rem;
 }
 
+/* Page 10 - Final */
+#page10 .page-bg img {
+    object-fit: cover;
+    object-position: center;
+}
+
+.final-header {
+    margin-bottom: 2rem;
+}
+
+.logo-final {
+    width: 400px;
+    height: auto;
+    margin-bottom: 1.5rem;
+    filter: drop-shadow(2px 2px 8px rgba(0, 0, 0, 0.6));
+}
+
+.date-title-small {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: var(--weight-light);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 2rem;
+}
+
 .logo-footer {
     width: 150px;
     height: auto;
@@ -494,7 +521,7 @@ body {
 
 /* Page 9 - Vision 2035 Two Boxes */
 #page9 .page-bg img {
-    object-position: center 40%;
+    object-position: center 65%;
     object-fit: cover;
 }
 
@@ -583,6 +610,12 @@ body {
     line-height: 1.5;
     margin-bottom: 0.8rem;
     color: var(--white);
+}
+
+/* Page 10 - Larger quote text */
+#page10 .quote p {
+    font-size: 1.8rem;
+    line-height: 1.6;
 }
 
 .quote cite {
