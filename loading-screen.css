@@ -1,0 +1,188 @@
+/* Loading Screen Styles */
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+}
+
+#loading-screen.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loading-content {
+    text-align: center;
+    animation: fadeInUp 1s ease-out;
+}
+
+.loading-logo {
+    width: 280px;
+    height: auto;
+    margin-bottom: 2rem;
+    animation: pulse 2s ease-in-out infinite;
+    filter: drop-shadow(0 0 30px rgba(201, 169, 97, 0.3));
+}
+
+.loading-text {
+    font-family: 'Oswald', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    letter-spacing: 0.2em;
+    margin-bottom: 0.5rem;
+    animation: trackIn 1.5s ease-out;
+}
+
+.loading-tagline {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    color: #C9A961;
+    letter-spacing: 0.3em;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeIn 1s ease-out 0.5s forwards;
+}
+
+.loading-progress {
+    width: 300px;
+    margin: 0 auto 2rem;
+    opacity: 0;
+    animation: fadeIn 1s ease-out 0.8s forwards;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #C9A961 0%, #E5C574 100%);
+    border-radius: 2px;
+    width: 0%;
+    transition: width 0.3s ease-out;
+    box-shadow: 0 0 10px rgba(201, 169, 97, 0.5);
+}
+
+.progress-percentage {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 1rem;
+    letter-spacing: 0.1em;
+}
+
+.loading-date {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 0.2em;
+    opacity: 0;
+    animation: fadeIn 1s ease-out 1.2s forwards;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 30px rgba(201, 169, 97, 0.3));
+    }
+    50% {
+        transform: scale(1.05);
+        filter: drop-shadow(0 0 40px rgba(201, 169, 97, 0.5));
+    }
+}
+
+@keyframes trackIn {
+    0% {
+        letter-spacing: -0.5em;
+        opacity: 0;
+    }
+    40% {
+        opacity: 0.6;
+    }
+    100% {
+        letter-spacing: 0.2em;
+        opacity: 1;
+    }
+}
+
+/* Hide main content initially */
+body.loading {
+    overflow: hidden;
+}
+
+body.loading .nav-dots,
+body.loading .scroll-indicator,
+body.loading .page {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Show content with animation */
+body:not(.loading) .nav-dots {
+    animation: fadeIn 0.8s ease-out 0.3s both;
+}
+
+body:not(.loading) .scroll-indicator {
+    animation: fadeIn 0.8s ease-out 0.5s both;
+}
+
+body:not(.loading) .page {
+    animation: fadeIn 1s ease-out both;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .loading-logo {
+        width: 200px;
+    }
+
+    .loading-text {
+        font-size: 2.5rem;
+    }
+
+    .loading-progress {
+        width: 250px;
+    }
+
+    .loading-tagline,
+    .loading-date {
+        font-size: 0.8rem;
+    }
+}
