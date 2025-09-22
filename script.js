@@ -1,4 +1,4 @@
-// Navigation functionality for Vision 2035 fullscreen pages
+// Navigation functionality for Vision 2035 - Continuous scroll
 document.addEventListener('DOMContentLoaded', function() {
     // Get all pages and navigation dots
     const pages = document.querySelectorAll('.page');
@@ -6,165 +6,109 @@ document.addEventListener('DOMContentLoaded', function() {
     const scrollIndicator = document.querySelector('.scroll-indicator');
     let currentPage = 0;
 
-    // Set initial page position
-    window.scrollTo(0, 0);
+    // Update active navigation dot based on scroll position
+    function updateActivePage() {
+        const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+        const windowHeight = window.innerHeight;
 
-    // Update active navigation dot and hide/show scroll indicator
-    function updateActivePage(index) {
-        currentPage = index;
+        // Find which page is currently most visible
+        pages.forEach((page, index) => {
+            const pageTop = page.offsetTop;
+            const pageBottom = pageTop + page.offsetHeight;
+            const viewportCenter = scrollPosition + (windowHeight / 2);
 
-        // Update navigation dots
-        navDots.forEach((dot, i) => {
-            if (i === index) {
-                dot.classList.add('active');
-                dot.setAttribute('aria-current', 'true');
-            } else {
-                dot.classList.remove('active');
-                dot.removeAttribute('aria-current');
+            if (viewportCenter >= pageTop && viewportCenter < pageBottom) {
+                if (currentPage !== index) {
+                    currentPage = index;
+
+                    // Update navigation dots
+                    navDots.forEach((dot, i) => {
+                        if (i === index) {
+                            dot.classList.add('active');
+                            dot.setAttribute('aria-current', 'true');
+                        } else {
+                            dot.classList.remove('active');
+                            dot.removeAttribute('aria-current');
+                        }
+                    });
+
+                    // Hide scroll indicator after first page
+                    if (scrollIndicator) {
+                        scrollIndicator.style.display = index === 0 ? 'block' : 'none';
+                    }
+                }
             }
         });
-
-        // Hide scroll indicator after first page
-        if (scrollIndicator) {
-            scrollIndicator.style.display = index === 0 ? 'block' : 'none';
-        }
     }
 
-    // Navigation dot click handlers
+    // Navigation dot click handlers - smooth scroll to page
     navDots.forEach((dot, index) => {
         dot.addEventListener('click', () => {
-            navigateToPage(index);
-        });
-    });
-
-    // Navigate to specific page
-    function navigateToPage(index) {
-        if (index >= 0 && index < pages.length) {
             pages[index].scrollIntoView({
                 behavior: 'smooth',
                 block: 'start'
             });
-            updateActivePage(index);
-        }
-    }
+        });
+    });
 
-    // Keyboard navigation
+    // Update active page on scroll with throttling
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+        if (scrollTimeout) {
+            clearTimeout(scrollTimeout);
+        }
+        scrollTimeout = setTimeout(updateActivePage, 50);
+    });
+
+    // Keyboard navigation for accessibility
     document.addEventListener('keydown', (e) => {
         switch(e.key) {
-            case 'ArrowDown':
             case 'PageDown':
-                e.preventDefault();
                 if (currentPage < pages.length - 1) {
-                    navigateToPage(currentPage + 1);
+                    pages[currentPage + 1].scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 }
                 break;
-            case 'ArrowUp':
             case 'PageUp':
-                e.preventDefault();
                 if (currentPage > 0) {
-                    navigateToPage(currentPage - 1);
+                    pages[currentPage - 1].scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 }
                 break;
             case 'Home':
-                e.preventDefault();
-                navigateToPage(0);
+                if (e.ctrlKey || e.metaKey) {
+                    e.preventDefault();
+                    pages[0].scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
                 break;
             case 'End':
-                e.preventDefault();
-                navigateToPage(pages.length - 1);
+                if (e.ctrlKey || e.metaKey) {
+                    e.preventDefault();
+                    pages[pages.length - 1].scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
                 break;
         }
     });
 
-    // Simple wheel navigation - one event = one page
-    let scrolling = false;
+    // Initialize on page load
+    updateActivePage();
 
-    document.addEventListener('wheel', (e) => {
-        e.preventDefault();
-
-        // Prevent multiple scrolls at once
-        if (scrolling) return;
-
-        scrolling = true;
-
-        if (e.deltaY > 0 && currentPage < pages.length - 1) {
-            // Scroll down
-            navigateToPage(currentPage + 1);
-        } else if (e.deltaY < 0 && currentPage > 0) {
-            // Scroll up
-            navigateToPage(currentPage - 1);
-        }
-
-        // Allow next scroll after a longer delay to prevent jumping
-        setTimeout(() => {
-            scrolling = false;
-        }, 2000);
-    }, { passive: false });
-
-    // Touch support for mobile devices
-    let touchStartY = 0;
-    let touchEndY = 0;
-
-    document.addEventListener('touchstart', (e) => {
-        touchStartY = e.touches[0].clientY;
-    }, { passive: true });
-
-    document.addEventListener('touchend', (e) => {
-        touchEndY = e.changedTouches[0].clientY;
-        handleSwipe();
-    }, { passive: true });
-
-    function handleSwipe() {
-        const swipeThreshold = 50;
-        const swipeDistance = touchStartY - touchEndY;
-
-        if (Math.abs(swipeDistance) > swipeThreshold) {
-            if (swipeDistance > 0 && currentPage < pages.length - 1) {
-                // Swiped up - go to next page
-                navigateToPage(currentPage + 1);
-            } else if (swipeDistance < 0 && currentPage > 0) {
-                // Swiped down - go to previous page
-                navigateToPage(currentPage - 1);
-            }
-        }
-    }
-
-    // Track current page with Intersection Observer
-    // Disabled to prevent conflicts with manual navigation
-    /*
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.5
-    };
-
-    const pageObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const pageIndex = Array.from(pages).indexOf(entry.target);
-                if (pageIndex !== currentPage) {
-                    updateActivePage(pageIndex);
-                }
-            }
-        });
-    }, observerOptions);
-
-    pages.forEach(page => pageObserver.observe(page));
-    */
-
-    // Handle resize events for mobile orientation changes
+    // Recalculate on window resize
     let resizeTimeout;
     window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-            // Ensure current page is properly in view after resize
-            navigateToPage(currentPage);
-        }, 250);
+        if (resizeTimeout) {
+            clearTimeout(resizeTimeout);
+        }
+        resizeTimeout = setTimeout(updateActivePage, 100);
     });
-
-    // Initialize first page
-    updateActivePage(0);
-
-    // Add loaded class to body for CSS animations
-    document.body.classList.add('loaded');
 });
