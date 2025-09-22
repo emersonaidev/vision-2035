@@ -2,6 +2,9 @@
 
 A modern, responsive website for Vision 2035 - An exclusive gathering at Necker Island.
 
+**Last Updated**: December 2024
+**Live Site**: Password protected (password: ignition)
+
 ## 🚀 Features
 
 - **Fully Responsive Design**: Works perfectly on all devices (mobile, tablet, desktop)
