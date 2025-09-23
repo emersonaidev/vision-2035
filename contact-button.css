@@ -101,6 +101,21 @@ body.on-first-page .contact-button {
     }
 }
 
+/* Small mobile adjustments */
+@media (max-width: 480px) {
+    .contact-button {
+        width: 45px;
+        height: 45px;
+        bottom: 25px;
+        right: 15px;
+    }
+
+    .contact-button svg {
+        width: 18px;
+        height: 18px;
+    }
+}
+
 /* Avoid overlap with nav dots */
 @media (min-width: 769px) {
     .nav-dots {

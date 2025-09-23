@@ -178,13 +178,30 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+    .form-subtitle {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+
     .contact-form {
         max-width: 100%;
+        gap: 1.2rem;
     }
 
     .form-input,
     .form-textarea {
         font-size: 16px; /* Prevents zoom on iOS */
+        padding: 0.9rem 1.2rem;
+    }
+
+    .form-textarea {
+        min-height: 100px;
+    }
+
+    .form-submit {
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
+        margin-top: 0.8rem;
     }
 
     .logo-thank-you {
@@ -192,7 +209,7 @@
     }
 
     .thank-you-title {
-        font-size: 3rem;
+        font-size: 2.5rem;
     }
 
     .thank-you-message {
@@ -201,5 +218,63 @@
 
     .thank-you-quote p {
         font-size: 1.2rem;
+    }
+
+    .location-text {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-subtitle {
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .contact-form {
+        gap: 1rem;
+    }
+
+    .form-input,
+    .form-textarea {
+        padding: 0.8rem 1rem;
+    }
+
+    .form-textarea {
+        min-height: 80px;
+    }
+
+    .form-submit {
+        padding: 0.9rem 1.2rem;
+        font-size: 0.95rem;
+        letter-spacing: 0.15em;
+    }
+
+    .logo-thank-you {
+        width: 150px;
+        margin-bottom: 1.5rem;
+    }
+
+    .thank-you-title {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .thank-you-message {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .thank-you-quote p {
+        font-size: 1.1rem;
+    }
+
+    .date-section-thank {
+        margin-bottom: 2rem;
+    }
+
+    .location-text {
+        font-size: 0.9rem;
+        margin-top: 0.3rem;
     }
 }
