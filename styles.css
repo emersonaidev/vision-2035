@@ -1032,12 +1032,12 @@ html {
     #page6 .corner-images {
         display: block !important;
         position: absolute !important;
-        top: 60px !important;
+        top: 120px !important;  /* Moved down from 60px */
         left: 50% !important;
         transform: translateX(-50%) !important;
         width: calc(100% - 40px) !important;
         max-width: 360px !important;
-        height: 200px !important;
+        height: 180px !important;  /* Reduced height for overlap */
         z-index: 10 !important;
         bottom: auto !important;
         right: auto !important;
@@ -1045,7 +1045,7 @@ html {
 
     #page6 .corner-image {
         position: absolute !important;
-        width: 48% !important;
+        width: 52% !important;  /* Slightly larger for overlap */
         height: 120px !important;
         object-fit: cover !important;
         border-radius: 8px !important;
@@ -1058,18 +1058,20 @@ html {
 
     #page6 .corner-image-1 {
         top: 0 !important;
-        left: 0 !important;
+        left: 5% !important;  /* Moved towards center */
         bottom: auto !important;
         right: auto !important;
         animation-delay: 0.8s;  /* After text box */
+        z-index: 11 !important;
     }
 
     #page6 .corner-image-2 {
         bottom: 0 !important;
-        right: 0 !important;
+        right: 5% !important;  /* Moved towards center */
         top: auto !important;
         left: auto !important;
         animation-delay: 1s;  /* After first image */
+        z-index: 10 !important;
     }
 
     /* Animation for images */
