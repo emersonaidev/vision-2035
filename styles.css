@@ -1013,14 +1013,15 @@ html {
     /* Slide 6 - Posicionar mais baixo */
     #page6 .page-content {
         align-items: flex-end;
-        padding-bottom: 80px;
+        padding-bottom: 40px;  /* Mais próximo do fundo */
     }
 
-    /* Slide 7 - Centrar e baixar */
+    /* Slide 7 - Mover para direita e subir */
     #page7 .page-content {
         align-items: center;
-        justify-content: center;
-        padding-top: 20vh; /* Empurra para baixo */
+        justify-content: flex-end;  /* Move para direita */
+        padding-right: 20px;  /* Espaço da borda */
+        padding-top: 10vh;  /* Mais acima */
     }
 
     /* Slide 4 - MORE THAN A MASTERMIND mobile adjustments */
@@ -1284,34 +1285,50 @@ html {
         align-items: center;
         justify-content: center;
         text-align: center;
-        padding: 1.5rem;
+        padding: 1rem;
         min-height: 80vh;
+        overflow: hidden;  /* Prevent text overflow */
     }
 
     #page11 .content-wrapper {
-        width: calc(100% - 50px);
+        width: calc(100% - 40px);
         max-width: 360px;
         margin: 0 auto;
+        background: rgba(0, 0, 0, 0.5) !important;
+        padding: 1.2rem;
+        max-height: 90vh;  /* Limit height */
+        overflow-y: auto;  /* Allow scroll if needed */
     }
 
     /* Ensure all content fits in Slide 11 */
     #page11 .logo-thank-you {
-        width: 180px;
-        margin-bottom: 1rem;
+        width: 150px;  /* Smaller logo */
+        margin-bottom: 0.5rem;
     }
 
     #page11 .thank-you-title {
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
+        font-size: 2rem;  /* Smaller title */
+        margin-bottom: 0.5rem;
     }
 
     #page11 .thank-you-message {
-        font-size: 1rem;
-        margin-bottom: 1.5rem;
+        font-size: 0.9rem;  /* Smaller text */
+        margin-bottom: 1rem;
+        line-height: 1.4;
     }
 
     #page11 .thank-you-quote p {
-        font-size: 1.1rem;
+        font-size: 0.95rem;  /* Smaller quote */
+        line-height: 1.4;
+    }
+
+    #page11 .date-section-thank {
+        margin: 0.5rem 0;
+    }
+
+    #page11 .footer-section-minimal {
+        margin-top: 1rem;
+        padding-top: 1rem;
     }
 }
 
