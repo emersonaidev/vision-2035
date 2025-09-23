@@ -1262,7 +1262,7 @@ html {
 
     /* Slide 9 - Hide brand statement on mobile */
     #page9 .top-left-title {
-        display: none;
+        display: none !important;
     }
 
     /* Slide 10 - Center form box */
