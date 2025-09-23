@@ -918,8 +918,51 @@ html {
     scroll-behavior: smooth;
 }
 
+/* Hide mobile/desktop text based on viewport */
+.mobile-text {
+    display: none;
+}
+
+.desktop-text {
+    display: block;
+}
+
 /* Responsive - Mobile */
 @media (max-width: 768px) {
+    /* Show/hide mobile vs desktop text */
+    .mobile-text {
+        display: block;
+    }
+
+    .desktop-text {
+        display: none;
+    }
+
+    /* Slide 2 - Necker Island mobile adjustments */
+    #page2 .page-content {
+        align-items: flex-end;
+        padding-bottom: 80px;
+    }
+
+    #page2 .content-wrapper {
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(10px);
+        padding: 1.5rem;
+        margin-bottom: 0;
+    }
+
+    #page2 .page-bg img {
+        object-position: center 40%; /* Shift image up to show more island */
+    }
+
+    #page2 .mobile-text .body-text {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        font-weight: var(--weight-light);
+        text-align: left;
+        margin-bottom: 0;
+    }
+
     /* Hero adjustments for mobile */
     .hero-container {
         margin-top: -40vh; /* Balanced position */
@@ -1129,6 +1172,38 @@ html {
 
 /* Responsive - Small Mobile */
 @media (max-width: 480px) {
+    /* Slide 2 - Small mobile adjustments */
+    #page2 .page-content {
+        padding-bottom: 60px;
+    }
+
+    #page2 .content-wrapper {
+        padding: 1.2rem;
+    }
+
+    #page2 .page-title {
+        font-size: 1.6rem;
+    }
+
+    #page2 .subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+
+    #page2 .mobile-text .body-text {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    #page2 .bottom-right-text {
+        bottom: 20px;
+        right: 15px;
+    }
+
+    #page2 .bottom-right-text p {
+        font-size: 0.85rem;
+    }
+
     .page-content {
         padding: 15px;
     }
