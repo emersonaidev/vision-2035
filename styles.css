@@ -948,18 +948,21 @@ html {
 
     /* Slide 2 - Necker Island mobile adjustments */
     #page2 .page-content {
-        align-items: center; /* Center vertically */
-        justify-content: center;
+        position: relative;
+        height: 100vh;
         padding: 20px;
     }
 
     #page2 .content-wrapper {
+        position: absolute;
+        bottom: 80px; /* Distância do fundo - AJUSTE ESTE VALOR */
+        left: 20px;
+        right: 20px;
         background: rgba(0, 0, 0, 0.4); /* Lighter background */
         backdrop-filter: blur(8px);
         padding: 1.5rem;
         margin: 0;
-        width: 100%;
-        max-width: 100%;
+        width: calc(100% - 40px);
     }
 
     #page2 .page-bg img {
@@ -1204,6 +1207,10 @@ html {
     }
 
     #page2 .content-wrapper {
+        bottom: 60px; /* Menos espaço em telas pequenas */
+        left: 15px;
+        right: 15px;
+        width: calc(100% - 30px);
         padding: 1rem;
         background: rgba(0, 0, 0, 0.35); /* Even lighter for small screens */
     }
