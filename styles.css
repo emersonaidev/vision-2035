@@ -927,6 +927,14 @@ html {
     display: block;
 }
 
+.brand-statement-mobile {
+    display: none;
+}
+
+.desktop-only {
+    display: block;
+}
+
 /* Responsive - Mobile */
 @media (max-width: 768px) {
     /* Show/hide mobile vs desktop text */
@@ -941,14 +949,15 @@ html {
     /* Slide 2 - Necker Island mobile adjustments */
     #page2 .page-content {
         align-items: flex-end;
-        padding-bottom: 80px;
+        padding-bottom: 20px;
     }
 
     #page2 .content-wrapper {
-        background: rgba(0, 0, 0, 0.6);
-        backdrop-filter: blur(10px);
+        background: rgba(0, 0, 0, 0.4); /* Lighter background */
+        backdrop-filter: blur(8px);
         padding: 1.5rem;
         margin-bottom: 0;
+        width: 100%;
     }
 
     #page2 .page-bg img {
@@ -956,11 +965,39 @@ html {
     }
 
     #page2 .mobile-text .body-text {
-        font-size: 1.1rem;
-        line-height: 1.8;
+        font-size: 1rem;
+        line-height: 1.6;
         font-weight: var(--weight-light);
         text-align: left;
-        margin-bottom: 0;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Brand statement inside the box on mobile */
+    .brand-statement-mobile {
+        display: none;
+    }
+
+    #page2 .brand-statement-mobile {
+        display: block;
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    #page2 .brand-statement-mobile p {
+        font-family: var(--font-display);
+        font-size: 0.9rem;
+        font-weight: var(--weight-bold);
+        line-height: 1.4;
+        letter-spacing: 0.05em;
+        color: var(--white);
+        text-transform: uppercase;
+        margin: 0;
+    }
+
+    /* Hide desktop-only bottom text on mobile */
+    .desktop-only {
+        display: none;
     }
 
     /* Hero adjustments for mobile */
@@ -1174,34 +1211,38 @@ html {
 @media (max-width: 480px) {
     /* Slide 2 - Small mobile adjustments */
     #page2 .page-content {
-        padding-bottom: 60px;
+        padding-bottom: 15px;
     }
 
     #page2 .content-wrapper {
-        padding: 1.2rem;
+        padding: 1rem;
+        background: rgba(0, 0, 0, 0.35); /* Even lighter for small screens */
     }
 
     #page2 .page-title {
-        font-size: 1.6rem;
+        font-size: 1.5rem;
+        margin-bottom: 0.8rem;
     }
 
     #page2 .subtitle {
-        font-size: 0.9rem;
-        margin-bottom: 1rem;
+        font-size: 0.85rem;
+        margin-bottom: 0.8rem;
     }
 
     #page2 .mobile-text .body-text {
-        font-size: 0.95rem;
-        line-height: 1.6;
+        font-size: 0.9rem;
+        line-height: 1.5;
+        margin-bottom: 1rem;
     }
 
-    #page2 .bottom-right-text {
-        bottom: 20px;
-        right: 15px;
+    #page2 .brand-statement-mobile {
+        margin-top: 1rem;
+        padding-top: 1rem;
     }
 
-    #page2 .bottom-right-text p {
-        font-size: 0.85rem;
+    #page2 .brand-statement-mobile p {
+        font-size: 0.8rem;
+        line-height: 1.3;
     }
 
     .page-content {
