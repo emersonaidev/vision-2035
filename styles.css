@@ -1002,37 +1002,37 @@ html {
     #page4 .content-wrapper {
         position: absolute;
         top: 60px; /* Posição do topo - AJUSTE ESTE VALOR */
-        left: 30px;
-        right: 30px;
+        left: 25px;
+        right: 25px;
         background: rgba(0, 0, 0, 0.5);
         backdrop-filter: blur(10px);
-        padding: 0.8rem 1rem; /* Padding ainda mais reduzido */
-        width: calc(100% - 60px); /* Largura reduzida */
-        max-width: 320px; /* Largura máxima */
+        padding: 1rem 1.2rem; /* Padding um pouco maior */
+        width: calc(100% - 50px); /* Largura um pouco maior */
+        max-width: 360px; /* Largura máxima aumentada */
         margin: 0 auto;
         overflow: hidden; /* Sem scroll */
         max-height: auto; /* Altura automática */
     }
 
     #page4 .page-title {
-        font-size: 1.4rem; /* Título ainda menor */
-        margin-bottom: 0.6rem;
+        font-size: 1.5rem; /* Título um pouco maior */
+        margin-bottom: 0.7rem;
         line-height: 1.1;
     }
 
     #page4 .body-text {
-        font-size: 0.8rem; /* Texto ainda menor */
-        line-height: 1.3;
-        margin-bottom: 0.4rem;
+        font-size: 0.85rem; /* Texto um pouco maior */
+        line-height: 1.35;
+        margin-bottom: 0.5rem;
     }
 
     #page4 .body-text.large {
-        font-size: 0.85rem;
+        font-size: 0.9rem;
     }
 
     #page4 .body-text.italic {
-        font-size: 0.75rem;
-        margin-top: 0.5rem;
+        font-size: 0.8rem;
+        margin-top: 0.6rem;
         margin-bottom: 0;
     }
 
@@ -1300,30 +1300,30 @@ html {
         left: 20px;
         right: 20px;
         width: calc(100% - 40px);
-        max-width: 280px; /* Ainda menor em telas pequenas */
-        padding: 0.7rem 0.9rem;
+        max-width: 320px; /* Aumentado para telas pequenas */
+        padding: 0.9rem 1rem;
         background: rgba(0, 0, 0, 0.45);
     }
 
     #page4 .page-title {
-        font-size: 1.2rem; /* Título bem pequeno */
+        font-size: 1.3rem; /* Título ajustado */
         margin-bottom: 0.5rem;
         line-height: 1.1;
     }
 
     #page4 .body-text {
-        font-size: 0.75rem; /* Texto bem pequeno */
-        line-height: 1.25;
-        margin-bottom: 0.3rem;
+        font-size: 0.8rem; /* Texto ajustado */
+        line-height: 1.3;
+        margin-bottom: 0.4rem;
     }
 
     #page4 .body-text.large {
-        font-size: 0.8rem;
+        font-size: 0.85rem;
     }
 
     #page4 .body-text.italic {
-        font-size: 0.7rem;
-        margin-top: 0.4rem;
+        font-size: 0.75rem;
+        margin-top: 0.5rem;
     }
 
     .page-content {
