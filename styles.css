@@ -993,10 +993,19 @@ html {
         display: none;
     }
 
-    /* Slide 3 - Centrar text box */
+    /* Slide 3 - Centrar text box com segurança */
     #page3 .page-content {
-        align-items: center;
-        justify-content: center;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        min-height: 100vh;
+    }
+
+    /* Específico para a caixa do Slide 3 apenas */
+    #page3 .content-wrapper {
+        position: relative;
+        margin: 0 auto;
+        /* Herda largura das regras gerais já existentes */
     }
 
     /* Slide 6 - Posicionar mais baixo */
