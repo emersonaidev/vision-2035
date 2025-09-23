@@ -965,8 +965,13 @@ html {
         width: calc(100% - 40px);
     }
 
+    #page2 .page-bg {
+        transform: translateY(-15%); /* Move entire background up */
+    }
+
     #page2 .page-bg img {
-        object-position: center 20%; /* Shift image up even more - island now prominent */
+        object-position: center center; /* Reset to center */
+        transform: scale(1.2); /* Scale up to avoid gaps */
     }
 
     #page2 .mobile-text .body-text {
