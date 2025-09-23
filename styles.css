@@ -1024,26 +1024,27 @@ html {
         transform: translateX(-50%) !important;
         width: calc(100% - 40px) !important;
         max-width: 360px !important;
+        opacity: 0;
+        animation: slideInFade 0.6s ease-out forwards;
     }
 
     /* Show corner images on mobile for Slide 6 */
     #page6 .corner-images {
-        display: flex !important;
-        gap: 4% !important;
+        display: block !important;
         position: absolute !important;
         top: 60px !important;
         left: 50% !important;
         transform: translateX(-50%) !important;
         width: calc(100% - 40px) !important;
         max-width: 360px !important;
-        height: auto !important;
+        height: 200px !important;
         z-index: 10 !important;
         bottom: auto !important;
         right: auto !important;
     }
 
     #page6 .corner-image {
-        position: relative !important;
+        position: absolute !important;
         width: 48% !important;
         height: 120px !important;
         object-fit: cover !important;
@@ -1051,20 +1052,24 @@ html {
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
         display: block !important;
         margin: 0 !important;
-        bottom: auto !important;
-        right: auto !important;
-        left: auto !important;
-        top: auto !important;
         opacity: 0;
         animation: slideInFade 0.8s ease-out forwards;
     }
 
     #page6 .corner-image-1 {
-        animation-delay: 0.3s;
+        top: 0 !important;
+        left: 0 !important;
+        bottom: auto !important;
+        right: auto !important;
+        animation-delay: 0.8s;  /* After text box */
     }
 
     #page6 .corner-image-2 {
-        animation-delay: 0.5s;
+        bottom: 0 !important;
+        right: 0 !important;
+        top: auto !important;
+        left: auto !important;
+        animation-delay: 1s;  /* After first image */
     }
 
     /* Animation for images */
