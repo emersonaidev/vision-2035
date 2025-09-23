@@ -1061,7 +1061,7 @@ html {
         left: 5% !important;  /* Moved towards center */
         bottom: auto !important;
         right: auto !important;
-        animation-delay: 0.8s;  /* After text box */
+        animation-delay: 1.2s;  /* Wait for text box to fully appear */
         z-index: 11 !important;
     }
 
@@ -1070,7 +1070,7 @@ html {
         right: 5% !important;  /* Moved towards center */
         top: auto !important;
         left: auto !important;
-        animation-delay: 1s;  /* After first image */
+        animation-delay: 1.5s;  /* After first image */
         z-index: 10 !important;
     }
 
