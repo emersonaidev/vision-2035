@@ -1003,9 +1003,11 @@ html {
 
     /* Específico para a caixa do Slide 3 apenas */
     #page3 .content-wrapper {
-        position: relative;
-        margin: 0 auto;
-        /* Herda largura das regras gerais já existentes */
+        position: relative !important;
+        margin: 0 auto !important;
+        width: 80% !important;          /* Sobrepõe o 35% global */
+        max-width: 360px !important;    /* Mantém consistência */
+        text-align: center;              /* Centraliza texto interno */
     }
 
     /* Slide 6 - Posicionar mais baixo */
