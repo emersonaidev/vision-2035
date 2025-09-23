@@ -992,6 +992,24 @@ html {
         display: none;
     }
 
+    /* Slide 4 - MORE THAN A MASTERMIND mobile adjustments */
+    #page4 .page-content {
+        align-items: flex-start; /* Align to top */
+        padding-top: 60px; /* Space from top */
+    }
+
+    #page4 .content-wrapper {
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(10px);
+        padding: 1.5rem;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    #page4 .page-bg img {
+        object-position: center bottom; /* Show the yoga practitioner */
+    }
+
     /* Hero adjustments for mobile */
     .hero-container {
         margin-top: -40vh; /* Balanced position */
@@ -1239,6 +1257,25 @@ html {
         font-size: 0.8rem;
         line-height: 1.4;
         margin-bottom: 0;
+    }
+
+    /* Slide 4 - Small mobile adjustments */
+    #page4 .page-content {
+        padding-top: 40px; /* Less space on small screens */
+    }
+
+    #page4 .content-wrapper {
+        padding: 1rem;
+        background: rgba(0, 0, 0, 0.45);
+    }
+
+    #page4 .page-title {
+        font-size: 1.5rem;
+    }
+
+    #page4 .body-text {
+        font-size: 0.85rem;
+        line-height: 1.4;
     }
 
     .page-content {
