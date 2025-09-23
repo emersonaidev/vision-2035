@@ -1057,7 +1057,7 @@ html {
     }
 
     #page6 .corner-image-1 {
-        top: 0 !important;
+        top: -20px !important;  /* Moved up */
         left: 5% !important;  /* Moved towards center */
         bottom: auto !important;
         right: auto !important;
