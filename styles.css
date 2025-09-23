@@ -994,16 +994,20 @@ html {
 
     /* Slide 4 - MORE THAN A MASTERMIND mobile adjustments */
     #page4 .page-content {
-        align-items: flex-start; /* Align to top */
-        padding-top: 60px; /* Space from top */
+        position: relative;
+        height: 100vh;
+        padding: 20px;
     }
 
     #page4 .content-wrapper {
+        position: absolute;
+        top: 60px; /* Posição do topo - AJUSTE ESTE VALOR */
+        left: 20px;
+        right: 20px;
         background: rgba(0, 0, 0, 0.5);
         backdrop-filter: blur(10px);
         padding: 1.5rem;
-        width: 100%;
-        max-width: 100%;
+        width: calc(100% - 40px);
     }
 
     #page4 .page-bg img {
@@ -1261,10 +1265,14 @@ html {
 
     /* Slide 4 - Small mobile adjustments */
     #page4 .page-content {
-        padding-top: 40px; /* Less space on small screens */
+        padding: 15px;
     }
 
     #page4 .content-wrapper {
+        top: 40px; /* Menos espaço do topo em telas pequenas */
+        left: 15px;
+        right: 15px;
+        width: calc(100% - 30px);
         padding: 1rem;
         background: rgba(0, 0, 0, 0.45);
     }
