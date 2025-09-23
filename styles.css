@@ -993,6 +993,25 @@ html {
         display: none;
     }
 
+    /* Slide 3 - Centrar text box */
+    #page3 .page-content {
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Slide 6 - Posicionar mais baixo */
+    #page6 .page-content {
+        align-items: flex-end;
+        padding-bottom: 80px;
+    }
+
+    /* Slide 7 - Centrar e baixar */
+    #page7 .page-content {
+        align-items: center;
+        justify-content: center;
+        padding-top: 20vh; /* Empurra para baixo */
+    }
+
     /* Slide 4 - MORE THAN A MASTERMIND mobile adjustments */
     #page4 .page-content {
         position: relative;
@@ -1228,6 +1247,60 @@ html {
 
     .quote cite {
         font-size: 1rem;
+    }
+
+    /* Slide 9 - Hide brand statement on mobile */
+    #page9 .top-left-title {
+        display: none;
+    }
+
+    /* Slide 10 - Center form box */
+    #page10 .content-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        margin: 0 auto;
+        width: calc(100% - 50px);
+        max-width: 360px;
+    }
+
+    /* Slide 11 - Center thank you content */
+    #page11 .thank-you-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 1.5rem;
+        min-height: 80vh;
+    }
+
+    #page11 .content-wrapper {
+        width: calc(100% - 50px);
+        max-width: 360px;
+        margin: 0 auto;
+    }
+
+    /* Ensure all content fits in Slide 11 */
+    #page11 .logo-thank-you {
+        width: 180px;
+        margin-bottom: 1rem;
+    }
+
+    #page11 .thank-you-title {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+
+    #page11 .thank-you-message {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    #page11 .thank-you-quote p {
+        font-size: 1.1rem;
     }
 }
 
