@@ -966,7 +966,7 @@ html {
     }
 
     #page2 .page-bg img {
-        object-position: center 30%; /* Shift image up more to show island clearly */
+        object-position: center 20%; /* Shift image up even more - island now prominent */
     }
 
     #page2 .mobile-text .body-text {
