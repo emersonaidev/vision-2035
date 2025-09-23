@@ -1022,15 +1022,27 @@ html {
         bottom: 80px !important;  /* Moved up from 40px */
         left: 50% !important;
         transform: translateX(-50%) !important;
-        width: calc(100% - 40px) !important;
+        width: 80% !important;  /* Match other pages width */
         max-width: 360px !important;
         opacity: 0;
         animation: slideInFade 0.6s ease-out forwards;
     }
 
-    /* Hide corner images on mobile for Slide 6 */
-    #page6 .corner-images {
+    /* Force complete removal of corner images on mobile for Slide 6 */
+    #page6 .corner-images,
+    #page6 .corner-images img,
+    #page6 .corner-image-left,
+    #page6 .corner-image-right,
+    #page6 img[src*="corner"],
+    #page6 img[alt*="orner"] {
         display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        width: 0 !important;
+        height: 0 !important;
+        position: absolute !important;
+        left: -9999px !important;
+        top: -9999px !important;
     }
 
     /* Animation for text and images */
@@ -1061,12 +1073,24 @@ html {
         }
     }
 
-    /* Slide 7 - Mover para direita e subir */
+    /* Slide 7 - Centralizar e posicionar no bottom */
     #page7 .page-content {
-        align-items: center;
-        justify-content: flex-end;  /* Move para direita */
-        padding-right: 20px;  /* Espaço da borda */
-        padding-top: 10vh;  /* Mais acima */
+        display: flex !important;
+        align-items: flex-end !important;  /* Alinha no fundo */
+        justify-content: center !important;  /* Centraliza horizontalmente */
+        padding-bottom: 40px !important;  /* Espaço do fundo */
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+    }
+
+    #page7 .content-wrapper {
+        margin-left: 0 !important;  /* Centraliza perfeitamente */
+        margin-right: 0 !important;
+    }
+
+    /* Slide 7 - Background image position on mobile */
+    #page7 .page-bg {
+        background-position: center 65% !important;  /* Puxa imagem para baixo */
     }
 
     /* Slide 4 - MORE THAN A MASTERMIND mobile adjustments */
@@ -1190,12 +1214,12 @@ html {
 
     /* Slide 6 - Necker Island mobile */
     .corner-images {
-        display: none; /* Hide corner images on mobile by default */
+        display: none !important; /* Hide corner images on mobile by default */
     }
 
-    /* But show them specifically for Slide 6 */
+    /* Force hide for Slide 6 as well */
     #page6 .corner-images {
-        display: block !important;
+        display: none !important;
     }
 
     .necker-island-content {
@@ -1377,8 +1401,25 @@ html {
     }
 
     #page11 .footer-section-minimal {
-        margin-top: 1rem;
-        padding-top: 1rem;
+        margin-top: 0.5rem;  /* Reduced spacing */
+        padding-top: 0.5rem;  /* Move links up */
+    }
+
+    /* Reduce copyright text size on mobile */
+    #page11 .copyright {
+        font-size: 0.7rem !important;  /* Smaller text */
+        letter-spacing: 0.05em !important;
+        margin-top: 0.3rem !important;
+    }
+
+    /* Adjust footer links spacing */
+    #page11 .imprint-links {
+        margin-bottom: 0.5rem !important;  /* Less space below links */
+    }
+
+    /* Hide unnecessary text */
+    #page11 .company-info {
+        display: none !important;  /* Remove "Necker Island aerial view Vision 2035" */
     }
 }
 
