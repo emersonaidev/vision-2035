@@ -1014,27 +1014,7 @@ html {
         max-height: auto; /* Altura automática */
     }
 
-    #page4 .page-title {
-        font-size: 1.5rem; /* Título um pouco maior */
-        margin-bottom: 0.7rem;
-        line-height: 1.1;
-    }
-
-    #page4 .body-text {
-        font-size: 0.85rem; /* Texto um pouco maior */
-        line-height: 1.35;
-        margin-bottom: 0.5rem;
-    }
-
-    #page4 .body-text.large {
-        font-size: 0.9rem;
-    }
-
-    #page4 .body-text.italic {
-        font-size: 0.8rem;
-        margin-top: 0.6rem;
-        margin-bottom: 0;
-    }
+    /* Slide 4 usa tamanhos de fonte padrão iguais ao Slide 3 */
 
     #page4 .page-bg img {
         object-position: center bottom; /* Show the yoga practitioner */
@@ -1305,26 +1285,7 @@ html {
         background: rgba(0, 0, 0, 0.45);
     }
 
-    #page4 .page-title {
-        font-size: 1.3rem; /* Título ajustado */
-        margin-bottom: 0.5rem;
-        line-height: 1.1;
-    }
-
-    #page4 .body-text {
-        font-size: 0.8rem; /* Texto ajustado */
-        line-height: 1.3;
-        margin-bottom: 0.4rem;
-    }
-
-    #page4 .body-text.large {
-        font-size: 0.85rem;
-    }
-
-    #page4 .body-text.italic {
-        font-size: 0.75rem;
-        margin-top: 0.5rem;
-    }
+    /* Slide 4 usa tamanhos de fonte padrão */
 
     .page-content {
         padding: 15px;
