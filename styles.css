@@ -922,25 +922,25 @@ html {
 @media (max-width: 768px) {
     /* Hero adjustments for mobile */
     .hero-container {
-        margin-top: -35vh; /* Moved down from -45vh */
+        margin-top: -40vh; /* Balanced position */
     }
 
     .hero-logo {
         width: 85vw;
         max-width: 320px;
-        margin: 3rem 0 2rem 0; /* Added more top margin */
+        margin: 2rem 0 1.5rem 0; /* Reduced top margin */
     }
 
     .hero-date {
         font-size: 0.9rem;
-        margin-bottom: 2rem; /* Increased spacing */
-        margin-top: 1rem; /* Added top margin */
+        margin-bottom: 1.5rem;
+        margin-top: 0.5rem; /* Reduced top margin */
     }
 
     .hero-tagline {
         font-size: 1rem;
         padding: 0 20px;
-        margin-top: 0.5rem; /* Added spacing */
+        margin-top: 0.3rem; /* Reduced spacing */
     }
 
     .page-content {
@@ -1157,26 +1157,26 @@ html {
 
     /* Hero mobile small */
     .hero-container {
-        margin-top: -32vh; /* Moved further down for small screens */
+        margin-top: -38vh; /* Balanced for small screens */
     }
 
     .hero-logo {
         width: 90vw;
         max-width: 280px;
-        margin: 2.5rem 0 1.5rem 0; /* Adjusted margins */
+        margin: 1.5rem 0 1rem 0; /* Reduced margins */
     }
 
     .hero-date {
         font-size: 0.85rem;
         letter-spacing: 0.2em;
-        margin-top: 0.5rem;
-        margin-bottom: 1.5rem;
+        margin-top: 0.3rem;
+        margin-bottom: 1rem;
     }
 
     .hero-tagline {
         font-size: 0.9rem;
         letter-spacing: 0.1em;
-        margin-top: 0.3rem;
+        margin-top: 0.2rem;
     }
 
     /* Two boxes small mobile */
