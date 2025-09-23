@@ -967,7 +967,7 @@ html {
     }
 
     #page2 .mobile-text .body-text {
-        font-size: 1rem;
+        font-size: 0.95rem;
         line-height: 1.6;
         font-weight: var(--weight-light);
         text-align: left;
@@ -978,11 +978,10 @@ html {
         margin-bottom: 1.2rem;
     }
 
-    #page2 .body-text.mobile-extended {
-        font-size: 0.95rem;
-        line-height: 1.5;
+    #page2 .mobile-text .body-text:last-child {
         margin-bottom: 0;
-        opacity: 0.95;
+        font-size: 0.9rem;
+        line-height: 1.5;
     }
 
     /* Hide desktop-only bottom text on mobile */
@@ -1220,7 +1219,7 @@ html {
     }
 
     #page2 .mobile-text .body-text {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         line-height: 1.5;
         margin-bottom: 0.8rem;
     }
@@ -1229,9 +1228,10 @@ html {
         margin-bottom: 1rem;
     }
 
-    #page2 .body-text.mobile-extended {
-        font-size: 0.85rem;
+    #page2 .mobile-text .body-text:last-child {
+        font-size: 0.8rem;
         line-height: 1.4;
+        margin-bottom: 0;
     }
 
     .page-content {
