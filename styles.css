@@ -1028,15 +1028,18 @@ html {
 
     /* Show corner images on mobile for Slide 6 */
     #page6 .corner-images {
-        display: block !important;
+        display: flex !important;
+        gap: 4% !important;
         position: absolute !important;
         top: 60px !important;
         left: 50% !important;
         transform: translateX(-50%) !important;
-        width: 100% !important;
+        width: calc(100% - 40px) !important;
         max-width: 360px !important;
         height: auto !important;
         z-index: 10 !important;
+        bottom: auto !important;
+        right: auto !important;
     }
 
     #page6 .corner-image {
@@ -1046,19 +1049,21 @@ html {
         object-fit: cover !important;
         border-radius: 8px !important;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
-        display: inline-block !important;
+        display: block !important;
         margin: 0 !important;
+        bottom: auto !important;
+        right: auto !important;
+        left: auto !important;
+        top: auto !important;
         opacity: 0;
         animation: slideInFade 0.8s ease-out forwards;
     }
 
     #page6 .corner-image-1 {
-        float: left !important;
         animation-delay: 0.3s;
     }
 
     #page6 .corner-image-2 {
-        float: right !important;
         animation-delay: 0.5s;
     }
 
