@@ -1010,10 +1010,20 @@ html {
         text-align: center;              /* Centraliza texto interno */
     }
 
-    /* Slide 6 - Posicionar mais baixo */
+    /* Slide 6 - Posicionar no bottom */
     #page6 .page-content {
-        align-items: flex-end;
-        padding-bottom: 40px;  /* Mais próximo do fundo */
+        position: relative !important;
+        height: 100vh !important;
+    }
+
+    #page6 .content-wrapper,
+    #page6 .necker-island-content {
+        position: absolute !important;
+        bottom: 40px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: calc(100% - 40px) !important;
+        max-width: 360px !important;
     }
 
     /* Slide 7 - Mover para direita e subir */
