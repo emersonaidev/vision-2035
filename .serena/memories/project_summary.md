@@ -1,0 +1,1 @@
+Vision 2035 is a static responsive marketing site for an exclusive Necker Island gathering. The repo ships HTML, CSS, and vanilla JS that power the landing page, ancillary UX modules (animations, loading, password, contact), and supporting static assets plus service worker and manifest files. Key focus areas are performance, responsive design, and accessibility.

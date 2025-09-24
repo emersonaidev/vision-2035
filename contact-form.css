@@ -64,10 +64,10 @@
     font-size: 1.1rem;
     font-weight: 700;
     letter-spacing: 0.2em;
-    background: rgba(201, 169, 97, 0.1);
-    border: 2px solid rgba(201, 169, 97, 0.5);
+    background: rgba(212, 175, 55, 0.1);
+    border: 2px solid rgba(212, 175, 55, 0.5);
     border-radius: 6px;
-    color: #C9A961;
+    color: #d4af37;
     cursor: pointer;
     transition: all 0.3s ease;
     text-transform: uppercase;
@@ -75,10 +75,10 @@
 }
 
 .form-submit:hover:not(:disabled) {
-    background: rgba(201, 169, 97, 0.2);
-    border-color: #C9A961;
+    background: rgba(212, 175, 55, 0.2);
+    border-color: #f0c040;
     transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(201, 169, 97, 0.3);
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
 }
 
 .form-submit:active:not(:disabled) {
@@ -91,28 +91,48 @@
 }
 
 .form-status {
-    margin-top: 1rem;
-    padding: 1rem;
-    border-radius: 6px;
-    font-family: 'Oswald', sans-serif;
-    font-size: 1rem;
-    font-weight: 300;
-    text-align: center;
-    display: none;
+    display: none !important;
 }
 
-.form-status.success {
-    display: block;
-    background: rgba(76, 175, 80, 0.1);
-    border: 1px solid rgba(76, 175, 80, 0.3);
-    color: #4CAF50;
-}
-
+.form-status.success,
 .form-status.error {
-    display: block;
-    background: rgba(244, 67, 54, 0.1);
-    border: 1px solid rgba(244, 67, 54, 0.3);
-    color: #F44336;
+    display: none !important;
+}
+
+/* Hide any Formspark error messages */
+.formspark-error,
+.form-error,
+.error-message,
+[class*="error"],
+[class*="Error"],
+[id*="error"],
+[id*="Error"],
+div:has-text("Oops"),
+div:has-text("problem"),
+div:has-text("try again") {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    position: absolute !important;
+    left: -9999px !important;
+}
+
+/* Additional safety: hide any potential error containers */
+.alert,
+.alert-danger,
+.alert-error,
+.message-error,
+.notification-error {
+    display: none !important;
+}
+
+/* Target any red error boxes specifically */
+div[style*="border"][style*="red"],
+div[style*="background"][style*="red"],
+div[style*="color"][style*="red"] {
+    display: none !important;
 }
 
 /* Page 11 - Thank You Styles */

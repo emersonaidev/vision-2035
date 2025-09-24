@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formspark Form Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        form {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .test-info {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        .test-variants {
+            margin-top: 30px;
+            padding: 20px;
+            background: #e9ecef;
+            border-radius: 4px;
+        }
+        .variant {
+            margin-bottom: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Formspark Form Testing</h1>
+
+    <div class="test-info">
+        <h3>Test Information:</h3>
+        <ul>
+            <li>Form ID: DIO6jEXG5</li>
+            <li>Action URL: https://submit-form.com/DIO6jEXG5</li>
+            <li>Redirect: https://vision2035.life/#page11</li>
+        </ul>
+        <p><strong>Instructions:</strong> Try submitting this form and observe what happens. Check the browser's Developer Tools Network tab to see the actual response.</p>
+    </div>
+
+    <h2>Test Form 1: With Redirect</h2>
+    <form action="https://submit-form.com/DIO6jEXG5" method="POST">
+        <input type="hidden" name="_redirect" value="https://vision2035.life/#page11">
+
+        <div class="form-group">
+            <label for="name1">Name:</label>
+            <input type="text" id="name1" name="name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email1">Email:</label>
+            <input type="email" id="email1" name="email" required>
+        </div>
+
+        <div class="form-group">
+            <label for="message1">Message:</label>
+            <textarea id="message1" name="message" rows="4" required></textarea>
+        </div>
+
+        <button type="submit">Submit with Redirect</button>
+    </form>
+
+    <div class="test-variants">
+        <h2>Test Form 2: Without Redirect</h2>
+        <div class="variant">
+            <form action="https://submit-form.com/DIO6jEXG5" method="POST">
+                <div class="form-group">
+                    <label for="name2">Name:</label>
+                    <input type="text" id="name2" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email2">Email:</label>
+                    <input type="email" id="email2" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message2">Message:</label>
+                    <textarea id="message2" name="message" rows="4" required></textarea>
+                </div>
+
+                <button type="submit">Submit without Redirect</button>
+            </form>
+        </div>
+
+        <h2>Test Form 3: AJAX Submission (No Page Reload)</h2>
+        <div class="variant">
+            <form id="ajax-form">
+                <div class="form-group">
+                    <label for="name3">Name:</label>
+                    <input type="text" id="name3" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email3">Email:</label>
+                    <input type="email" id="email3" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message3">Message:</label>
+                    <textarea id="message3" name="message" rows="4" required></textarea>
+                </div>
+
+                <button type="submit">Submit with AJAX</button>
+                <div id="ajax-result" style="margin-top: 15px; padding: 10px; display: none;"></div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // AJAX form submission for testing
+        document.getElementById('ajax-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const resultDiv = document.getElementById('ajax-result');
+            resultDiv.style.display = 'block';
+            resultDiv.style.background = '#cfe2ff';
+            resultDiv.innerHTML = 'Submitting...';
+
+            const formData = new FormData(this);
+
+            try {
+                const response = await fetch('https://submit-form.com/DIO6jEXG5', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const responseText = await response.text();
+
+                if (response.ok) {
+                    resultDiv.style.background = '#d1e7dd';
+                    resultDiv.innerHTML = `<strong>Success!</strong><br>Status: ${response.status}<br>Response: ${responseText.substring(0, 200)}...`;
+                } else {
+                    resultDiv.style.background = '#f8d7da';
+                    resultDiv.innerHTML = `<strong>Error!</strong><br>Status: ${response.status}<br>Response: ${responseText.substring(0, 200)}...`;
+                }
+
+                console.log('Full response:', {
+                    status: response.status,
+                    statusText: response.statusText,
+                    headers: Object.fromEntries(response.headers.entries()),
+                    body: responseText
+                });
+
+            } catch (error) {
+                resultDiv.style.background = '#f8d7da';
+                resultDiv.innerHTML = `<strong>Network Error!</strong><br>${error.message}`;
+                console.error('Submission error:', error);
+            }
+        });
+
+        // Log all form submissions
+        document.querySelectorAll('form').forEach(form => {
+            if (form.id !== 'ajax-form') {
+                form.addEventListener('submit', function(e) {
+                    console.log('Form submitting to:', this.action);
+                    console.log('Form data:', new FormData(this));
+                });
+            }
+        });
+    </script>
+</body>
+</html>

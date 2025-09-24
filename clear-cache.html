@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Clear Cache - Vision 2035</title>
+    <style>
+        body {
+            font-family: 'Oswald', sans-serif;
+            background: #000;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+        .container {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            max-width: 500px;
+        }
+        button {
+            background: #C9A961;
+            color: #000;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin: 1rem;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        button:hover {
+            opacity: 0.8;
+        }
+        .status {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 4px;
+            min-height: 100px;
+        }
+        .success {
+            color: #4CAF50;
+        }
+        .error {
+            color: #f44336;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Vision 2035 - Cache Manager</h1>
+        <p>Use this page to force clear all caches and service workers</p>
+
+        <button onclick="clearEverything()">Clear All Caches</button>
+        <button onclick="unregisterServiceWorker()">Unregister Service Worker</button>
+        <button onclick="reloadWithoutCache()">Hard Reload</button>
+
+        <div class="status" id="status">
+            Ready to clear caches...
+        </div>
+    </div>
+
+    <script>
+        function log(message, isError = false) {
+            const status = document.getElementById('status');
+            const className = isError ? 'error' : 'success';
+            status.innerHTML += `<div class="${className}">${message}</div>`;
+        }
+
+        async function clearEverything() {
+            document.getElementById('status').innerHTML = '';
+
+            try {
+                // Clear all caches
+                if ('caches' in window) {
+                    const cacheNames = await caches.keys();
+                    log(`Found ${cacheNames.length} cache(s)`);
+
+                    for (const cacheName of cacheNames) {
+                        await caches.delete(cacheName);
+                        log(`Deleted cache: ${cacheName}`);
+                    }
+                } else {
+                    log('Cache API not available', true);
+                }
+
+                // Clear localStorage
+                if (localStorage) {
+                    localStorage.clear();
+                    log('Cleared localStorage');
+                }
+
+                // Clear sessionStorage
+                if (sessionStorage) {
+                    sessionStorage.clear();
+                    log('Cleared sessionStorage');
+                }
+
+                log('✅ All caches cleared successfully!');
+
+            } catch (error) {
+                log(`Error: ${error.message}`, true);
+            }
+        }
+
+        async function unregisterServiceWorker() {
+            document.getElementById('status').innerHTML = '';
+
+            try {
+                if ('serviceWorker' in navigator) {
+                    const registrations = await navigator.serviceWorker.getRegistrations();
+                    log(`Found ${registrations.length} service worker(s)`);
+
+                    for (const registration of registrations) {
+                        const success = await registration.unregister();
+                        if (success) {
+                            log(`Unregistered service worker: ${registration.scope}`);
+                        } else {
+                            log(`Failed to unregister: ${registration.scope}`, true);
+                        }
+                    }
+
+                    log('✅ All service workers unregistered!');
+                } else {
+                    log('Service Worker not supported', true);
+                }
+            } catch (error) {
+                log(`Error: ${error.message}`, true);
+            }
+        }
+
+        function reloadWithoutCache() {
+            document.getElementById('status').innerHTML = 'Reloading without cache...';
+            // Force reload with cache bypass
+            window.location.reload(true);
+            // Alternative method
+            window.location.href = window.location.href + '?nocache=' + new Date().getTime();
+        }
+
+        // Check current status on load
+        window.addEventListener('load', async () => {
+            if ('serviceWorker' in navigator) {
+                const registrations = await navigator.serviceWorker.getRegistrations();
+                if (registrations.length > 0) {
+                    log(`⚠️ ${registrations.length} service worker(s) currently registered`);
+                }
+            }
+
+            if ('caches' in window) {
+                const cacheNames = await caches.keys();
+                if (cacheNames.length > 0) {
+                    log(`⚠️ ${cacheNames.length} cache(s) currently stored`);
+                    for (const cacheName of cacheNames) {
+                        log(`  - ${cacheName}`);
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

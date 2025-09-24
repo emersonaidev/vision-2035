@@ -1,0 +1,1 @@
+After changes run local http server for manual QA, exercising navigation dots, loading screen, password gate, and responsive breakpoints. Optionally open performance-test.html or run Lighthouse to confirm animations, lazy loading, and performance. Regenerate minified CSS/JS and image outputs if sources changed.

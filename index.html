@@ -30,7 +30,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="styles.min.css?v=20250923-1450">
+    <link rel="stylesheet" href="styles.min.css?v=20250923-1515">
     <link rel="stylesheet" href="loading-simple.css">
     <!-- ANIMATIONS DISABLED: <link rel="stylesheet" href="animations.min.css"> -->
     <link rel="stylesheet" href="contact-button.css">
@@ -307,11 +307,14 @@
 
                 <p class="form-subtitle">We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
 
-                <form id="contact-form" class="contact-form" action="https://formspree.io/f/xpwzekrk" method="POST">
+                <form id="contact-form" class="contact-form" action="https://submit-form.com/DIO6jEXG5" method="POST">
+                    <!-- Redirect to thank you page after successful submission -->
+                    <input type="hidden" name="_redirect" value="https://vision2035.life/#page11">
+
                     <div class="form-group">
                         <input
                             type="text"
-                            id="contact-name"
+                            id="name"
                             name="name"
                             class="form-input"
                             placeholder="Your Name"
@@ -322,7 +325,7 @@
                     <div class="form-group">
                         <input
                             type="email"
-                            id="contact-email"
+                            id="email"
                             name="email"
                             class="form-input"
                             placeholder="Your Email"
@@ -332,7 +335,7 @@
 
                     <div class="form-group">
                         <textarea
-                            id="contact-message"
+                            id="message"
                             name="message"
                             class="form-textarea"
                             placeholder="Your Message"
@@ -341,12 +344,10 @@
                         ></textarea>
                     </div>
 
-                    <button type="submit" class="form-submit">
-                        <span>SEND MESSAGE</span>
-                    </button>
-
-                    <div id="form-status" class="form-status"></div>
+                    <button type="submit" class="form-submit">SEND MESSAGE</button>
                 </form>
+
+                <!-- Status div removed - Formspark handles feedback natively -->
             </div>
         </div>
     </section>
@@ -468,8 +469,11 @@
     <script src="animations.js"></script>
     <script src="contact-button.js"></script>
     <script src="imprint-modal.js"></script>
-    <script src="emailjs-config.js"></script>
-    <script src="contact-form.js"></script>
+    <script src="error-remover.js"></script>
+    <script src="form-cleanup.js"></script>
+    <!-- DISABLED: <script src="emailjs-config.js"></script> -->
+    <!-- DISABLED: <script src="contact-form.js"></script> -->
+    <script src="contact-form-solution.js"></script>
     <script>
         // Registrar Service Worker
         if ('serviceWorker' in navigator) {

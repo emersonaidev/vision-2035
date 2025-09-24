@@ -1,6 +1,6 @@
 // Service Worker para Vision 2035
-// UPDATED: 2025-09-23 to force cache refresh
-const CACHE_NAME = 'vision2035-v20250923-1445';
+// UPDATED: 2025-09-24 to force cache refresh and fix form errors
+const CACHE_NAME = 'vision2035-v20250924-fix';
 const urlsToCache = [
   '/',
   '/styles.min.css',

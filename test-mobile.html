@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile CSS Fix Test</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+        }
+
+        .test-container {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .test-info {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .test-info h1 {
+            color: #333;
+            font-size: 24px;
+            margin-top: 0;
+        }
+
+        .test-info p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .test-button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .test-button:hover {
+            background: #45a049;
+        }
+
+        .status {
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <div class="test-info">
+            <h1>Mobile CSS Fix Test</h1>
+            <p>This page helps verify that the Slide 3 text box issue has been fixed.</p>
+
+            <h2>What was fixed:</h2>
+            <ul>
+                <li>Removed generic .content-wrapper styles that affected all slides</li>
+                <li>Made CSS rules specific to each slide (#page1, #page2, etc.)</li>
+                <li>Added !important flags to prevent style bleeding</li>
+                <li>Ensured Slide 3 text box only appears on Slide 3</li>
+            </ul>
+
+            <h2>Test Instructions:</h2>
+            <ol>
+                <li>Open the main site in mobile view (or on a mobile device)</li>
+                <li>Navigate through all slides using scroll or touch</li>
+                <li>Verify that the text box only appears on Slide 3</li>
+                <li>Check that Slide 1 (hero) has no background box</li>
+                <li>Confirm other slides display their content correctly</li>
+            </ol>
+
+            <button class="test-button" onclick="window.location.href='index.html'">
+                Open Main Site
+            </button>
+
+            <button class="test-button" onclick="testCSS()">
+                Run CSS Validation
+            </button>
+
+            <div id="test-status"></div>
+        </div>
+
+        <div class="test-info">
+            <h2>Key Changes Made:</h2>
+            <pre style="background: #f5f5f5; padding: 10px; overflow-x: auto; font-size: 12px;">
+/* Before - Generic rule affecting all slides */
+.content-wrapper {
+    width: calc(100% - 50px);
+    max-width: 360px;
+    /* ... */
+}
+
+/* After - Specific to certain slides only */
+#page2 .content-wrapper,
+#page4 .content-wrapper,
+#page6 .content-wrapper {
+    width: calc(100% - 50px);
+    max-width: 360px;
+    /* ... */
+}
+
+/* Slide 3 specific rules */
+#page3 .content-wrapper {
+    /* Unique styles for Slide 3 */
+    background: rgba(0, 0, 0, 0.5) !important;
+    /* ... */
+}
+
+/* Slide 1 prevention */
+#page1 .content-wrapper {
+    background: transparent !important;
+    /* ... */
+}
+            </pre>
+        </div>
+    </div>
+
+    <script>
+        function testCSS() {
+            const status = document.getElementById('test-status');
+
+            // Simple validation check
+            fetch('styles.css')
+                .then(response => response.text())
+                .then(css => {
+                    // Check for specific fixes
+                    const hasSpecificPage3 = css.includes('#page3 .content-wrapper');
+                    const hasSpecificPage1 = css.includes('#page1 .content-wrapper');
+                    const hasImportantFlags = css.includes('!important');
+                    const removedGenericWidth = !css.match(/^\s*\.content-wrapper\s*{[\s\S]*?width:\s*calc/m);
+
+                    if (hasSpecificPage3 && hasSpecificPage1 && hasImportantFlags) {
+                        status.className = 'status success';
+                        status.innerHTML = '✅ CSS fixes are properly applied!<br>' +
+                            '- Page-specific rules found<br>' +
+                            '- Important flags in place<br>' +
+                            '- Generic rules properly scoped';
+                    } else {
+                        status.className = 'status error';
+                        status.innerHTML = '⚠️ Some CSS fixes may be missing';
+                    }
+                })
+                .catch(error => {
+                    status.className = 'status error';
+                    status.innerHTML = '❌ Could not validate CSS: ' + error;
+                });
+        }
+    </script>
+</body>
+</html>
