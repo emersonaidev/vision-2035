@@ -111,4 +111,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         resizeTimeout = setTimeout(updateActivePage, 100);
     });
+
+    // Image loading JavaScript removed - images show immediately
 });

@@ -1,5 +1,6 @@
 // Service Worker para Vision 2035
-const CACHE_NAME = 'vision2035-v1';
+// UPDATED: 2025-09-23 to force cache refresh
+const CACHE_NAME = 'vision2035-v20250923-1445';
 const urlsToCache = [
   '/',
   '/styles.min.css',
