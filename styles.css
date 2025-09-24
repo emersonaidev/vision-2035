@@ -5,6 +5,15 @@
     box-sizing: border-box;
 }
 
+/* Global overflow prevention for all text containers */
+.content-wrapper,
+.text-box-vertical,
+.necker-island-content,
+.thank-you-content {
+    overflow: visible !important;
+    max-height: none !important;
+}
+
 /* Variables */
 :root {
     --gold: #C9A961;
@@ -126,8 +135,9 @@ body {
     padding: 2.5rem;
     border-radius: 0;
     min-height: auto;
-    max-height: 90vh;
-    overflow-y: auto;
+    /* Removed max-height restriction to prevent scrolling */
+    /* Content will expand naturally */
+    overflow: visible;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -447,15 +457,18 @@ body {
     border-radius: 0;
     width: 100%;
     max-width: 380px;
+    overflow: visible;
+    max-height: none;
 }
 
 .topics-list {
     margin-top: 1.5rem;
+    overflow: visible;
 }
 
 .topic-item {
-    margin-bottom: 1rem;
-    padding-bottom: 1rem;
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.8rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -467,18 +480,18 @@ body {
 
 .topic-item h3 {
     font-family: var(--font-display);
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: var(--weight-bold);
-    margin-bottom: 0.2rem;
+    margin-bottom: 0.15rem;
     color: var(--white);
     line-height: 1.1;
 }
 
 .topic-item p {
     font-family: var(--font-sans);
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: var(--weight-light);
-    line-height: 1.2;
+    line-height: 1.15;
     color: var(--white);
     opacity: 0.85;
 }
@@ -491,6 +504,8 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    overflow: visible;
+    max-height: none;
 }
 
 .necker-island-content .page-title {
@@ -550,15 +565,16 @@ body {
     list-style: none;
     margin-top: 0.5rem;
     padding: 0;
+    overflow: visible;
 }
 
 .experience-list li {
     font-family: var(--font-sans);
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: var(--weight-light);
-    line-height: 1.3;
+    line-height: 1.25;
     color: var(--white);
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.25rem;
 }
 
 /* Page 9 - Vision 2035 Two Boxes */
@@ -591,7 +607,10 @@ body {
     padding: 2rem;
     border-radius: 0;
     width: 300px;
-    height: 70vh;
+    /* Changed from fixed height to min-height for flexibility */
+    min-height: 60vh;
+    max-height: 85vh;
+    overflow: visible;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -775,7 +794,7 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.1);
     width: 80%;
     max-width: 800px;
-    max-height: 80vh;
+    max-height: 90vh;
     overflow-y: auto;
     border-radius: 8px;
     position: relative;
@@ -835,24 +854,8 @@ body {
     text-decoration: underline;
 }
 
-/* Custom scrollbar for content wrapper */
-.content-wrapper::-webkit-scrollbar {
-    width: 6px;
-}
-
-.content-wrapper::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 3px;
-}
-
-.content-wrapper::-webkit-scrollbar-thumb {
-    background: rgba(201, 169, 97, 0.5);
-    border-radius: 3px;
-}
-
-.content-wrapper::-webkit-scrollbar-thumb:hover {
-    background: rgba(201, 169, 97, 0.7);
-}
+/* Scrollbar styling removed as content wrappers no longer scroll */
+/* Only modal content may need scrolling in extreme cases */
 
 /* Scroll Indicator */
 .scroll-indicator {
@@ -938,6 +941,37 @@ html {
     display: block;
 }
 
+/* Ultra-small mobile screens (375px) */
+@media (max-width: 375px) {
+    .content-wrapper {
+        width: 92% !important;
+        max-width: 350px !important;
+        padding: 0.8rem 1rem !important;
+    }
+
+    .page-title {
+        font-size: 1.5rem !important;
+        line-height: 1.1 !important;
+    }
+
+    .body-text {
+        font-size: 0.85rem !important;
+        line-height: 1.4 !important;
+    }
+
+    .subtitle {
+        font-size: 0.9rem !important;
+    }
+
+    /* Ensure no scrolling on smallest screens */
+    .content-wrapper,
+    .text-box-vertical,
+    .necker-island-content {
+        overflow: visible !important;
+        max-height: none !important;
+    }
+}
+
 /* Responsive - Mobile */
 @media (max-width: 768px) {
     /* Show/hide mobile vs desktop text */
@@ -967,6 +1001,8 @@ html {
         margin: 0 auto;
         width: calc(100% - 50px);
         max-width: 360px; /* Mesma largura do Slide 4 */
+        overflow: visible; /* Ensure no scrolling */
+        max-height: none; /* Allow natural height */
     }
 
     #page2 .page-bg img {
@@ -1008,9 +1044,11 @@ html {
     #page3 .content-wrapper {
         position: relative !important;
         margin: 0 auto !important;
-        width: 80% !important;          /* Sobrepõe o 35% global */
-        max-width: 360px !important;    /* Mantém consistência */
+        width: 85% !important;          /* Increased for better mobile readability */
+        max-width: 380px !important;    /* Slightly wider for comfort */
         text-align: center;              /* Centraliza texto interno */
+        overflow: visible !important;   /* No scrolling */
+        max-height: none !important;    /* Natural height */
     }
 
     /* Slide 6 - Posicionar no bottom */
@@ -1025,8 +1063,10 @@ html {
         bottom: 80px !important;  /* Moved up from 40px */
         left: 50% !important;
         transform: translateX(-50%) !important;
-        width: 80% !important;  /* Match other pages width */
-        max-width: 360px !important;
+        width: 85% !important;  /* Wider for readability */
+        max-width: 380px !important;
+        overflow: visible !important;
+        max-height: none !important;
     }
 
     /* Force complete removal of corner images on mobile for Slide 6 */
@@ -1061,6 +1101,10 @@ html {
     #page7 .content-wrapper {
         margin-left: 0 !important;  /* Centraliza perfeitamente */
         margin-right: 0 !important;
+        width: 85% !important;
+        max-width: 380px !important;
+        overflow: visible !important;
+        max-height: none !important;
     }
 
     /* Slide 7 - Background image position on mobile */
@@ -1084,10 +1128,10 @@ html {
         backdrop-filter: blur(10px);
         padding: 1rem 1.2rem; /* Padding um pouco maior */
         width: calc(100% - 50px); /* Largura um pouco maior */
-        max-width: 360px; /* Largura máxima aumentada */
+        max-width: 380px; /* Slightly wider for better text flow */
         margin: 0 auto;
-        overflow: hidden; /* Sem scroll */
-        max-height: auto; /* Altura automática */
+        overflow: visible; /* No scrolling */
+        max-height: none; /* Natural height expansion */
     }
 
     /* Slide 4 usa tamanhos de fonte padrão iguais ao Slide 3 */
@@ -1137,16 +1181,17 @@ html {
         padding: 1rem 1.2rem;
         background: rgba(0, 0, 0, 0.5);
         min-height: auto;
-        max-height: auto; /* Sem limite de altura para evitar scroll */
-        width: calc(100% - 50px); /* Mesma largura do Slide 4 */
-        max-width: 360px; /* Mesma max-width do Slide 4 */
+        max-height: none; /* No height limit to prevent scroll */
+        width: 85%; /* Wider for better mobile readability */
+        max-width: 380px; /* Consistent width across mobile */
         margin: 0 auto;
-        overflow: hidden; /* Garante que não há scroll */
+        overflow: visible; /* No scrolling */
     }
 
     .content-wrapper.centered-content {
-        width: calc(100% - 50px);
-        max-width: 360px;
+        width: 85%; /* Wider for better readability */
+        max-width: 380px;
+        overflow: visible !important;
     }
 
     .page-title {
@@ -1185,6 +1230,8 @@ html {
     .text-column .content-wrapper {
         width: 100%;
         max-width: 100%;
+        overflow: visible !important;
+        max-height: none !important;
     }
 
     /* Slide 6 - Necker Island mobile */
@@ -1212,8 +1259,10 @@ html {
     .text-box-vertical {
         width: 100%;
         height: auto;
-        max-height: 45vh;
+        min-height: auto;
+        max-height: none; /* Allow natural expansion */
         padding: 1.5rem;
+        overflow: visible; /* No scrolling */
     }
 
     .text-box-vertical:first-child {
@@ -1323,8 +1372,10 @@ html {
         justify-content: center;
         text-align: center;
         margin: 0 auto;
-        width: calc(100% - 50px);
-        max-width: 360px;
+        width: 85%;
+        max-width: 380px;
+        overflow: visible !important;
+        max-height: none !important;
     }
 
     /* Slide 11 - Center thank you content */
@@ -1336,17 +1387,17 @@ html {
         text-align: center;
         padding: 1rem;
         min-height: 80vh;
-        overflow: hidden;  /* Prevent text overflow */
+        overflow: visible;  /* Allow natural expansion */
     }
 
     #page11 .content-wrapper {
-        width: calc(100% - 40px);
-        max-width: 360px;
+        width: 85%;
+        max-width: 380px;
         margin: 0 auto;
         background: rgba(0, 0, 0, 0.5) !important;
         padding: 1.2rem;
-        max-height: 90vh;  /* Limit height */
-        overflow-y: auto;  /* Allow scroll if needed */
+        max-height: none;  /* Natural height */
+        overflow: visible;  /* No scrolling */
     }
 
     /* Hide logo on mobile for Slide 11 */
@@ -1408,10 +1459,12 @@ html {
         bottom: 60px; /* Menos espaço em telas pequenas */
         left: 20px;
         right: 20px;
-        width: calc(100% - 40px);
-        max-width: 320px; /* Mesma largura do Slide 4 */
+        width: 90%; /* Wider for small screens */
+        max-width: 340px; /* Slightly wider */
         padding: 0.9rem 1rem;
         background: rgba(0, 0, 0, 0.35); /* Even lighter for small screens */
+        overflow: visible !important;
+        max-height: none !important;
     }
 
     #page2 .page-title {
@@ -1449,10 +1502,12 @@ html {
         top: 40px; /* Menos espaço do topo em telas pequenas */
         left: 20px;
         right: 20px;
-        width: calc(100% - 40px);
-        max-width: 320px; /* Aumentado para telas pequenas */
+        width: 90%; /* Wider for small screens */
+        max-width: 340px; /* Consistent with other pages */
         padding: 0.9rem 1rem;
         background: rgba(0, 0, 0, 0.45);
+        overflow: visible !important;
+        max-height: none !important;
     }
 
     /* Slide 4 usa tamanhos de fonte padrão */
@@ -1463,8 +1518,10 @@ html {
 
     .content-wrapper {
         padding: 0.9rem 1rem;
-        width: calc(100% - 40px);
-        max-width: 320px; /* Mesma largura do Slide 4 em telas pequenas */
+        width: 90%; /* Wider for better readability */
+        max-width: 340px; /* Consistent width */
+        overflow: visible !important;
+        max-height: none !important;
     }
 
     .page-title {
@@ -1627,8 +1684,9 @@ html {
     }
 
     .content-wrapper {
-        max-height: 90vh;
-        overflow-y: auto;
+        /* Allow natural height even in landscape */
+        max-height: none;
+        overflow: visible;
     }
 }
 
