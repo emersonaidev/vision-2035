@@ -941,6 +941,10 @@ html {
     display: block;
 }
 
+.mobile-only {
+    display: none;
+}
+
 /* Ultra-small mobile screens (375px) */
 @media (max-width: 375px) {
     .content-wrapper {
