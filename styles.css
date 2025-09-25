@@ -221,7 +221,7 @@ body {
     font-family: var(--font-sans);
     font-size: 1.2rem;
     font-weight: var(--weight-light);
-    font-style: italic;
+    font-style: normal;
     margin-top: 2rem;
     color: var(--white);
 }
@@ -1115,13 +1115,23 @@ html {
         display: none !important;
     }
 
-    /* Style the question for mobile */
-    #page7 .question {
-        font-size: 1.3rem !important;
-        line-height: 1.4 !important;
+    /* Style the question for mobile - now as title */
+    #page7 .mobile-title {
+        font-size: 1.5rem !important;
+        line-height: 1.3 !important;
         margin: 0 !important;
         text-align: center !important;
-        font-style: normal !important;  /* Remove italic */
+        font-style: normal !important;
+        font-weight: 700 !important;
+    }
+
+    /* Hide desktop question on mobile, show mobile title */
+    #page7 .question.desktop-only {
+        display: none !important;
+    }
+
+    #page7 .mobile-only {
+        display: block !important;
     }
 
     /* Slide 7 - Background image position on mobile */
@@ -1571,10 +1581,9 @@ html {
         padding: 1.2rem !important;
     }
 
-    #page7 .question {
-        font-size: 1.1rem !important;
-        line-height: 1.3 !important;
-        font-style: normal !important;  /* Remove italic */
+    #page7 .mobile-title {
+        font-size: 1.3rem !important;
+        line-height: 1.2 !important;
     }
 
     /* Slide 8 - Small mobile adjustments to show face */
